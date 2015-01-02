@@ -1,0 +1,3 @@
+partial interface CSS {
+//  [SameObject] readonly attribute Map elementSources;
+};

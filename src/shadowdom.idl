@@ -1,0 +1,24 @@
+interface ShadowRoot : DocumentFragment {
+Selection? getSelection();
+Element? elementFromPoint(double x, double y);
+readonly attribute Element? activeElement;
+readonly attribute Element host;
+readonly attribute ShadowRoot? olderShadowRoot;
+attribute DOMString innerHTML;
+readonly attribute StyleSheetList styleSheets;
+};
+partial interface Element {
+ShadowRoot createShadowRoot();
+NodeList getDestinationInsertionPoints();
+readonly attribute ShadowRoot? shadowRoot;
+};
+interface HTMLContentElement : HTMLElement {
+attribute DOMString select;
+NodeList getDistributedNodes();
+};
+interface HTMLShadowElement : HTMLElement {
+NodeList getDistributedNodes();
+};
+partial interface Event {
+readonly attribute object path;
+};

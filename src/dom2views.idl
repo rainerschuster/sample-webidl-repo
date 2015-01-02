@@ -1,0 +1,8 @@
+// http://www.w3.org/TR/DOM-Level-2-Views/views.html
+interface AbstractView {
+  readonly attribute DocumentView     document;
+};
+
+interface DocumentView {
+  readonly attribute AbstractView     defaultView;
+};

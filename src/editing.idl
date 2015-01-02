@@ -1,0 +1,54 @@
+interface Selection {
+  readonly attribute Node? anchorNode;
+  readonly attribute unsigned long anchorOffset;
+  readonly attribute Node? focusNode;
+  readonly attribute unsigned long focusOffset;
+
+  readonly attribute boolean isCollapsed;
+  void               collapse(Node node, unsigned long offset);
+  void               collapseToStart();
+  void               collapseToEnd();
+
+  void               extend(Node node, unsigned long offset);
+
+  void               selectAllChildren(Node node);
+  void               deleteFromDocument();
+
+  readonly attribute unsigned long rangeCount;
+  Range              getRangeAt(unsigned long index);
+  void               addRange(Range range);
+  void               removeRange(Range range);
+  void               removeAllRanges();
+
+  stringifier;
+};
+
+partial interface Document {
+  Selection getSelection();
+};
+
+partial interface Window {
+  Selection getSelection();
+};
+
+[Constructor(DOMString type, optional EditingBeforeInputEventInit eventInitDict)]
+interface EditingBeforeInputEvent : Event {
+  readonly attribute DOMString command;
+  readonly attribute DOMString value;
+};
+
+dictionary EditingBeforeInputEventInit : EventInit {
+  DOMString command;
+  DOMString value;
+};
+
+[Constructor(DOMString type, optional EditingInputEventInit eventInitDict)]
+interface EditingInputEvent : Event {
+  readonly attribute DOMString command;
+  readonly attribute DOMString value;
+};
+
+dictionary EditingInputEventInit : EventInit {
+  DOMString command;
+  DOMString value;
+};

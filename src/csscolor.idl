@@ -1,0 +1,143 @@
+[Constructor(double r, double g, double b, optional double a=1),
+ Constructor(RGBColor rgb),
+ Constructor(CSSColor css),
+ Constructor(optional RGBColorInit color),
+ Constructor(DOMString cssstring)]
+interface RGBColor : CSSColor {
+  attribute double r;
+  attribute double g;
+  attribute double b;
+  attribute double a;
+
+  RGBColor   toRGB();
+  HSLColor   toHSL();
+  HexColor   toHex();
+  CMYKColor  toCMYK();
+  DOMString? toName();
+
+//  static attribute ColorStringifiers stringifiers;
+  attribute ColorStringifierType defaultStringifier;
+
+};
+
+dictionary RGBColorInit {
+  double r = 0;
+  double g = 0;
+  double b = 0;
+  double a = 1;
+};
+
+enum ColorStringifierType {
+  "rgb",
+  "hsl",
+  "hex",
+  "cmyk"
+};
+
+dictionary ColorStringifiers {
+  ColorStringifierCallback rgb;
+  ColorStringifierCallback hsl;
+  ColorStringifierCallback hex;
+  ColorStringifierCallback cmyk;
+};
+
+callback ColorStringifierCallback = DOMString (CSSColor color, any...args);
+
+[Constructor(double h, double s, double l, optional double a=1),
+ Constructor(RGBColor rgb),
+ Constructor(HSLColor hsl),
+ Constructor(CSSColor css),
+ Constructor(optional HSLColorInit color),
+ Constructor(DOMString cssstring)]
+interface HSLColor : CSSColor {
+  attribute double h;
+  attribute double s;
+  attribute double l;
+  attribute double a;
+
+  RGBColor toRGB();
+  HSLColor toHSL();
+
+//  static attribute ColorStringifiers stringifiers;
+  attribute ColorStringifierType defaultStringifier;
+};
+
+dictionary HSLColorInit {
+  double h = 0;
+  double s = 0;
+  double l = 0;
+  double a = 1;
+};
+
+[Constructor([Clamp] octet r, [Clamp] octet g, [Clamp] octet b, [Clamp] optional octet a = 255),
+ Constructor(RGBColor rgb),
+ Constructor(HexColor hex),
+ Constructor(CSSColor css),
+ Constructor(optional HexColorInit color),
+ Constructor(DOMString cssstring)]
+interface HexColor : CSSColor {
+  [Clamp] attribute octet r;
+  [Clamp] attribute octet g;
+  [Clamp] attribute octet b;
+  [Clamp] attribute octet a;
+
+  RGBColor toRGB();
+  HexColor toHex();
+
+//  static attribute ColorStringifiers stringifiers;
+  attribute ColorStringifierType defaultStringifier;
+};
+
+dictionary HexColorInit {
+  [Clamp] octet r = 0;
+  [Clamp] octet g = 0;
+  [Clamp] octet b = 0;
+  [Clamp] octet a = 255;
+};
+
+[Constructor(double c, double m, double y, double k, optional double a=1, optional RGBColor? fallback=null),
+ Constructor(RGBColor rgb),
+ Constructor(CMYKColor cmyk),
+ Constructor(CSSColor css),
+ Constructor(optional CMYKColorInit color),
+ Constructor(DOMString cssstring)]
+interface CMYKColor : CSSColor {
+  attribute double c;
+  attribute double m;
+  attribute double y;
+  attribute double k;
+  attribute double a;
+  attribute RGBColor? fallback;
+
+  RGBColor toRGB();
+
+//  static attribute ColorStringifiers stringifiers;
+  attribute ColorStringifierType defaultStringifier;
+};
+
+dictionary CMYKColorInit {
+  double c = 0;
+  double m = 0;
+  double y = 0;
+  double k = 0;
+  double a = 1;
+  RGBColor? fallback = null;
+};
+
+[Constructor()]
+interface CSSColor {
+  RGBColor toRGB();
+
+  static CSSColor parse(DOMString css, optional Element el);
+
+  DOMString toString(optional ColorStringifierType type, any... args);
+
+  static void forward(DOMString methodName);
+  static void forwardToSameClass(DOMString methodName);
+
+  /* Default, forwarded converters */
+  HSLColor  toHSL();
+  HexColor   toHex();
+  CMYKColor  toCMYK();
+  DOMString? toName();
+};
