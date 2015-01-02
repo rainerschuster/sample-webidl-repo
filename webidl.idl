@@ -1,0 +1,729 @@
+// This is an IDL code block.
+interface Example {
+  attribute long something;
+};
+
+interface Paint { };
+
+interface SolidColor : Paint {
+  attribute float red;
+  attribute float green;
+  attribute float blue;
+};
+
+interface Pattern : Paint {
+  attribute DOMString imageURL;
+};
+
+[Constructor]
+interface GraphicalWindow {
+  readonly attribute unsigned long width;
+  readonly attribute unsigned long height;
+
+  attribute Paint currentPaint;
+
+  void drawRectangle(float x, float y, float width, float height);
+
+  void drawText(float x, float y, DOMString text);
+};
+
+interface B : A {
+  void f(ArrayOfLongs x);
+};
+
+interface A {
+};
+
+typedef long[] ArrayOfLongs;
+
+// Typedef identifier: "number"
+typedef float number;
+
+// Interface identifier: "System"
+interface System {
+
+  // Operation identifier: "createObject"
+  // Operation argument identifier: "interface"
+  object createObject(DOMString _interface);
+
+  // Operation argument identifier: "interface"
+  object[] createObjectArray(DOMString interface);
+
+  // Operation has no identifier; it declares a getter.
+  getter DOMString (DOMString keyName);
+};
+
+// Interface identifier: "TextField"
+interface TextField {
+
+  // Attribute identifier: "const"
+  attribute boolean _const;
+
+  // Attribute identifier: "value"
+  attribute DOMString? _value;
+};
+
+interface A {
+  void f();
+  void g();
+};
+
+interface B : A {
+  void f();
+  void g(DOMString x);
+};
+
+callback interface Options {
+  attribute DOMString? option1;
+  attribute DOMString? option2;
+  attribute long? option3;
+};
+
+interface A {
+  void doTask(DOMString type, Options options);
+};
+
+dictionary Options {
+  DOMString? option1;
+  DOMString? option2;
+  long? option3;
+};
+
+interface A {
+  void doTask(DOMString type, Options options);
+};
+
+interface Animal {
+  attribute DOMString name;
+};
+
+interface Human : Animal {
+  attribute Dog? pet;
+};
+
+interface Dog : Animal {
+  attribute Human? owner;
+};
+
+interface Node {
+  readonly attribute DOMString nodeName;
+  readonly attribute Node? parentNode;
+  Node appendChild(Node newChild);
+  void addEventListener(DOMString type, EventListener listener);
+};
+
+callback interface EventListener {
+  void handleEvent(Event event);
+};
+
+interface A {
+  const short rambaldi = 47;
+};
+
+interface Util {
+  const boolean DEBUG = false;
+  const octet LF = 10;
+  const unsigned long BIT_MASK = 0x0000fc00;
+  const float AVOGADRO = 6.022e23;
+};
+
+interface Animal {
+
+  // A simple attribute that can be set to any string value.
+  readonly attribute DOMString name;
+
+  // An attribute whose value can be assigned to.
+  attribute unsigned short age;
+};
+
+interface Person : Animal {
+
+  // An attribute whose getter behavior is inherited from Animal, and need not be
+  // specified in the description of Person.
+  inherit attribute DOMString name;
+};
+
+interface Dimensions {
+  attribute unsigned long width;
+  attribute unsigned long height;
+};
+
+interface Button {
+
+  // An operation that takes no arguments and returns a boolean.
+  boolean isMouseOver();
+
+  // Overloaded operations.
+  void setDimensions(Dimensions size);
+  void setDimensions(unsigned long width, unsigned long height);
+};
+
+interface IntegerSet {
+  readonly attribute unsigned long cardinality;
+
+  void union(long... ints);
+  void intersection(long... ints);
+};
+
+interface ColorCreator {
+  object createColor(float v1, float v2, float v3, optional float alpha);
+};
+
+interface ColorCreator {
+  object createColor(float v1, float v2, float v3);
+  object createColor(float v1, float v2, float v3, float alpha);
+};
+
+interface Dictionary {
+  readonly attribute unsigned long propertyCount;
+
+  getter float (DOMString propertyName);
+  setter void (DOMString propertyName, float propertyValue);
+};
+
+interface Dictionary {
+  readonly attribute unsigned long propertyCount;
+
+  getter float getProperty(DOMString propertyName);
+  setter void setProperty(DOMString propertyName, float propertyValue);
+};
+
+interface Dictionary {
+  readonly attribute unsigned long propertyCount;
+
+  float getProperty(DOMString propertyName);
+  void setProperty(DOMString propertyName, float propertyValue);
+
+  getter float (DOMString propertyName);
+  setter void (DOMString propertyName, float propertyValue);
+};
+
+interface NumberQuadrupler {
+  // This operation simply returns four times the given number x.
+  legacycaller float compute(float x);
+};
+
+interface A {
+  stringifier DOMString ();
+};
+
+interface A {
+  stringifier;
+};
+
+[Constructor]
+interface Student {
+  attribute unsigned long id;
+  stringifier attribute DOMString name;
+};
+
+[Constructor]
+interface Student {
+  attribute unsigned long id;
+  attribute DOMString? familyName;
+  attribute DOMString givenName;
+
+  stringifier DOMString ();
+};
+
+interface Transaction {
+  readonly attribute Account from;
+  readonly attribute Account to;
+  readonly attribute float amount;
+  readonly attribute DOMString description;
+  readonly attribute unsigned long number;
+
+  serializer;
+};
+
+interface Account {
+  DOMString name;
+  unsigned long number;
+};
+
+interface Transaction {
+  readonly attribute Account from;
+  readonly attribute Account to;
+  readonly attribute float amount;
+  readonly attribute DOMString description;
+  readonly attribute unsigned long number;
+
+  serializer = { from, to, amount, description };
+};
+
+interface Account {
+  DOMString name;
+  unsigned long number;
+
+  serializer = number;
+};
+
+interface A {
+  getter DOMString toWord(unsigned long index);
+};
+
+interface OrderedMap {
+  readonly attribute unsigned long size;
+
+  getter any getByIndex(unsigned long index);
+  setter void setByIndex(unsigned long index, any value);
+  deleter void removeByIndex(unsigned long index);
+
+  getter any get(DOMString name);
+  setter creator void set(DOMString name, any value);
+  deleter void remove(DOMString name);
+};
+
+interface Point { /* ... */ };
+
+interface Circle {
+  attribute float cx;
+  attribute float cy;
+  attribute float radius;
+
+  static readonly attribute long triangulationCount;
+  static Point triangulate(Circle c1, Circle c2, Circle c3);
+};
+
+interface A {
+  void f();
+};
+
+partial interface A {
+  void f(float x);
+  void g();
+};
+
+partial interface A {
+  void g(DOMString x);
+};
+
+interface A {
+  /* f1 */ void f(DOMString a);
+  /* f2 */ void f(Node a, DOMString b, float... c);
+  /* f3 */ void f();
+  /* f4 */ void f(Event a, DOMString b, optional DOMString c, float... d);
+};
+
+interface B {
+  void f(DOMString x);
+  void f(float x);
+};
+
+interface B {
+  /* f1 */ void f(DOMString w);
+  /* f2 */ void f(long w, float x, Node y, Node z);
+  /* f3 */ void f(float w, float x, DOMString y, Node z);
+};
+
+interface SessionManager {
+  Session getSessionForUser(DOMString username);
+  readonly attribute unsigned long sessionCount;
+
+  iterable<Session>;
+};
+
+interface Session {
+  readonly attribute DOMString username;
+  // ...
+};
+
+dictionary B : A {
+  long b;
+  long a;
+};
+
+dictionary A {
+  long c;
+  long g;
+};
+
+dictionary C : B {
+  long e;
+  long f;
+};
+
+partial dictionary A {
+  long h;
+  long d;
+};
+
+interface Something {
+  void f(A a);
+};
+
+[Constructor]
+interface Point {
+  attribute float x;
+  attribute float y;
+};
+
+dictionary PaintOptions {
+  DOMString? fillPattern = "black";
+  DOMString? strokePattern = null;
+  Point position;
+};
+
+interface GraphicsContext {
+  void drawRectangle(float width, float height, optional PaintOptions options);
+};
+
+enum MealType { "rice", "noodles", "other" };
+
+interface Meal {
+  attribute MealType type;
+  attribute float size;     // in grams
+
+  void initialize(MealType type, float size);
+};
+
+callback AsyncOperationCallback = void (DOMString status);
+
+interface AsyncOperations {
+  void performOperation(AsyncOperationCallback whenFinished);
+};
+
+interface Point {
+  attribute float x;
+  attribute float y;
+};
+
+typedef sequence<Point> Points;
+
+interface Widget {
+  boolean pointWithinBounds(Point p);
+  boolean allPointsWithinBounds(Points ps);
+};
+
+interface Window { ... };
+interface SomeFunctionality { ... };
+Window implements SomeFunctionality;
+
+interface Gizmo { ... };
+interface MoreFunctionality { ... };
+SomeFunctionality implements MoreFunctionality;
+Gizmo implements SomeFunctionality;
+
+interface Gizmo { ... };
+interface MoreFunctionality { ... };
+Gizmo implements SomeFunctionality;
+Gizmo implements MoreFunctionality;
+
+interface A { attribute long x; };
+interface B { attribute long x; };
+A implements B;  // B::x would clash with A::x
+
+interface C { attribute long y; };
+interface D { attribute long y; };
+interface E : D { };
+C implements E;  // D::y would clash with C::y
+
+interface F { };
+interface H { attribute long z; };
+interface I { attribute long z; };
+F implements H;
+F implements I;  // H::z and I::z would clash when mixed in to F
+
+interface Entry {
+  readonly attribute unsigned short entryType;
+  // ...
+};
+
+interface Observable {
+  void addEventListener(DOMString type,
+                        EventListener listener,
+                        boolean useCapture);
+  // ...
+};
+
+Entry implements Observable;
+
+interface MyConstants {
+  const boolean? ARE_WE_THERE_YET = false;
+};
+
+interface Node {
+  readonly attribute DOMString? namespaceURI;
+  readonly attribute Node? parentNode;
+  // ...
+};
+
+interface Canvas {
+
+  sequence<DOMString> getSupportedImageCodecs();
+
+  void drawPolygon(sequence<float> coordinates);
+  sequence<float> getLastDrawnPolygon();
+
+  // ...
+};
+
+[Constructor]
+interface LotteryResults {
+  readonly attribute unsigned short[] numbers;
+};
+
+[Constructor]
+interface LotteryResults {
+  attribute unsigned short[] numbers;
+};
+
+[ArrayClass]
+interface ItemList {
+  attribute unsigned long length;
+  getter object getItem(unsigned long index);
+  creator setter object setItem(unsigned long index, object item);
+  deleter void removeItem(unsigned long index);
+};
+
+[ArrayClass]
+interface ImmutableItemList {
+  readonly attribute unsigned long length;
+  getter object getItem(unsigned long index);
+};
+
+interface GraphicsContext {
+  void setColor(octet red, octet green, octet blue);
+  void setColorClamped([Clamp] octet red, [Clamp] octet green, [Clamp] octet blue);
+};
+
+interface NodeList {
+  Node item(unsigned long index);
+  readonly attribute unsigned long length;
+};
+
+[Constructor,
+ Constructor(float radius)]
+interface Circle {
+  attribute float r;
+  attribute float cx;
+  attribute float cy;
+  readonly attribute float circumference;
+};
+
+[Constructor(unsigned long patties, unsigned long cheeseSlices)]
+dictionary BurgerOrder {
+  unsigned long pattyCount;
+  unsigned long cheeseSliceCount;
+};
+
+interface GraphicsContext {
+  void setColor(octet red, octet green, octet blue);
+  void setColorEnforcedRange([EnforceRange] octet red, [EnforceRange] octet green, [EnforceRange] octet blue);
+};
+
+[PrimaryGlobal]
+interface Window {
+  ...
+};
+
+// By using the same identifier Worker for both SharedWorkerGlobalScope // and DedicatedWorkerGlobalScope, both can be addressed in an [Exposed] // extended attribute at once.
+[Global=Worker]
+interface SharedWorkerGlobalScope : WorkerGlobalScope {
+  ...
+};
+
+[Global=Worker]
+interface DedicatedWorkerGlobalScope : WorkerGlobalScope {
+  ...
+};
+
+// MathUtils is available for use in workers and on the main thread.
+[Exposed=(Window,Worker)]
+interface MathUtils {
+  static double someComplicatedFunction(double x, double y);
+};
+
+// WorkerUtils is only available in workers. Evaluating WorkerUtils // in the global scope of a worker would give you its interface object, while // doing so on the main thread will give you a ReferenceError.
+[Exposed=Worker]
+interface WorkerUtils {
+  static void setPriority(double x);
+};
+
+// Node is only available on the main thread. Evaluating Node // in the global scope of a worker would give you a ReferenceError.
+interface Node {
+  ...
+};
+
+[ImplicitThis]
+interface Window {
+  ...
+  attribute DOMString name;
+  void alert(DOMString message);
+};
+
+[PrimaryGlobal]
+interface Window {
+  getter any (DOMString name);
+  attribute DOMString name;
+  // ...
+};
+
+interface Example {
+  [LenientThis] attribute DOMString x;
+  attribute DOMString y;
+};
+
+[NamedConstructor=Audio,
+ NamedConstructor=Audio(DOMString src)]
+interface HTMLAudioElement : HTMLMediaElement {
+  // ...
+};
+
+interface Document : Node {
+  [NewObject] Element createElement(DOMString localName);
+  ...
+};
+
+interface Storage {
+  void addEntry(unsigned long key, any value);
+};
+
+[NoInterfaceObject]
+interface Query {
+  any lookupEntry(unsigned long key);
+};
+
+interface StringMap {
+  readonly attribute unsigned long length;
+  getter DOMString lookup(DOMString key);
+};
+
+[OverrideBuiltins]
+interface StringMap2 {
+  readonly attribute unsigned long length;
+  getter DOMString lookup(DOMString key);
+};
+
+interface Name {
+  attribute DOMString full;
+  attribute DOMString family;
+  attribute DOMString given;
+};
+
+interface Person {
+  [PutForwards=full] readonly attribute Name name;
+  attribute unsigned short age;
+};
+
+interface Counter {
+  [Replaceable] readonly attribute unsigned long value;
+  void increment();
+};
+
+interface Document : Node {
+  [SameObject] readonly attribute DOMImplementation implementation;
+  ...
+};
+
+callback OccurrenceHandler = void (DOMString details);
+
+[TreatNonObjectAsNull]
+callback ErrorHandler = void (DOMString details);
+
+interface Manager {
+  attribute OccurrenceHandler? handler1;
+  attribute ErrorHandler? handler2;
+};
+
+interface Dog {
+  attribute DOMString name;
+  [TreatNullAs=EmptyString] attribute DOMString owner;
+
+  boolean isMemberOfBreed([TreatNullAs=EmptyString] DOMString breedName);
+};
+
+interface A1 {
+  [Unforgeable] readonly attribute DOMString x;
+};
+interface B1 : A1 {
+  void x();  // Invalid; would be shadowed by A1's x.
+};
+
+interface B2 : A1 { };
+B2 implements Mixin;
+interface Mixin {
+  void x();  // Invalid; B2's copy of x would be shadowed by A1's x.
+};
+
+[Unforgeable]
+interface A2 {
+  readonly attribute DOMString x;
+};
+interface B3 : A2 {
+  void x();  // Invalid; would be shadowed by A2's x.
+};
+
+interface B4 : A2 { };
+B4 implements Mixin;
+interface Mixin {
+  void x();  // Invalid; B4's copy of x would be shadowed by A2's x.
+};
+
+interface A3 { };
+A3 implements A2;
+interface B5 : A3 {
+  void x();  // Invalid; would be shadowed by A3's mixed-in copy of A2's x.
+};
+
+interface System {
+  [Unforgeable] readonly attribute DOMString username;
+  readonly attribute Date loginTime;
+};
+
+interface Thing {
+  void f();
+  [Unscopeable] g();
+};
+
+[NoInterfaceObject]
+interface Foo {
+};
+
+partial interface Window {
+  attribute Foo foo;
+};
+
+void forEach(Function callback, optional any thisArg = undefined);
+
+interface A {
+  void f();
+};
+
+interface B { };
+B implements A;
+
+interface C { };
+C implements A;
+
+interface A {
+
+  /** * Calls computeSquareRoot on m, passing x as its argument. */
+  float doComputation(MathUtils m, float x);
+};
+
+interface MathUtils {
+  /** * If x is negative, throws a NotSupportedError. Otherwise, returns * the square root of x. */
+  float computeSquareRoot(float x);
+};
+
+interface Dahut {
+  attribute DOMString type;
+};
+
+interface ExceptionThrower {
+  // This attribute always throws a NotSupportedError and never returns a value.
+  attribute long valueOf;
+};
+
+typedef (Int8Array or Int16Array or Int32Array or
+         Uint8Array or Uint16Array or Uint32Array or Uint8ClampedArray or
+         Float32Array or Float64Array or DataView) ArrayBufferView;
+
+typedef (ArrayBufferView or ArrayBuffer) BufferSource;
+
+typedef unsigned long long DOMTimeStamp;
+
+callback Function = any (any... arguments);
+
+callback VoidFunction = void ();

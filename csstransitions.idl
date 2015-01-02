@@ -1,0 +1,12 @@
+[Constructor(DOMString type, optional TransitionEventInit transitionEventInitDict)]
+  interface TransitionEvent : Event {
+    readonly attribute DOMString          propertyName;
+    readonly attribute float              elapsedTime;
+    readonly attribute DOMString          pseudoElement;
+  };
+
+  dictionary TransitionEventInit : EventInit {
+    DOMString propertyName = "";
+    float elapsedTime = 0.0;
+    DOMString pseudoElement = "";
+  };

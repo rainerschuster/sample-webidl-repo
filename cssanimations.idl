@@ -1,0 +1,30 @@
+[Constructor(DOMString type, optional AnimationEventInit animationEventInitDict)]
+  interface AnimationEvent : Event {
+    readonly attribute DOMString animationName;
+    readonly attribute float elapsedTime;
+    readonly attribute DOMString pseudoElement;
+  };
+  dictionary AnimationEventInit : EventInit {
+    DOMString animationName = "";
+    float elapsedTime = 0.0;
+    DOMString pseudoElement = "";
+  };
+
+partial interface CSSRule {
+    const unsigned short KEYFRAMES_RULE = 7;
+    const unsigned short KEYFRAME_RULE = 8;
+};
+
+interface CSSKeyframeRule : CSSRule {
+           attribute DOMString           keyText;
+  readonly attribute CSSStyleDeclaration style;
+};
+
+interface CSSKeyframesRule : CSSRule {
+           attribute DOMString   name;
+  readonly attribute CSSRuleList cssRules;
+
+  void            appendRule(DOMString rule);
+  void            deleteRule(DOMString key);
+  CSSKeyframeRule? findRule(DOMString key);
+};

@@ -1,0 +1,17 @@
+partial interface Element {
+void requestPointerLock();
+};
+partial interface Document {
+attribute EventHandler? onpointerlockchange;
+attribute EventHandler? onpointerlockerror;
+readonly attribute Element? pointerLockElement;
+void exitPointerLock ();
+};
+partial interface MouseEvent {
+readonly attribute long movementX;
+readonly attribute long movementY;
+};
+partial dictionary MouseEventInit {
+attribute long movementX = 0;
+attribute long movementY = 0;
+};
