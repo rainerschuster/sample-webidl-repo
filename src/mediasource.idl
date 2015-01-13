@@ -72,7 +72,7 @@ interface TrackDefault {
  readonly attribute DOMString[] kinds;
 };
 
-[ Constructor (sequence<TrackDefault> trackDefaults)]
+[ Constructor (optional sequence<TrackDefault> trackDefaults = [])]
 interface TrackDefaultList {
  readonly attribute unsigned long length;
  getter TrackDefault (unsigned long index);

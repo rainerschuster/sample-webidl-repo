@@ -9,38 +9,49 @@ partial interface HTMLStyleElement {
 [ NoInterfaceObject ]
 interface SecurityPolicySource {
 };
+
 [Constructor(DOMString sourceExpression)]
 interface SecurityPolicySourceURL : SecurityPolicySource {
     boolean matchesURL(DOMString url);
+
     readonly attribute DOMString scheme;
     readonly attribute DOMString host;
     readonly attribute DOMString port;
     readonly attribute DOMString path;
+
     readonly attribute boolean hostWildcard;
     readonly attribute boolean portWildcard;
 };
+
 enum SecurityPolicyHashAlgorithm { "SHA-256", "SHA-384", "SHA-512" };
+
 [Constructor(DOMString sourceExpression)]
 interface SecurityPolicySourceHash : SecurityPolicySource {
     boolean matchesNode(Node node);
+
     readonly attribute SecurityPolicyHashAlgorithm algorithm;
     readonly attribute DOMString hash;
 };
+
 [Constructor(DOMString sourceExpression)]
 interface SecurityPolicySourceNonce : SecurityPolicySource {
     boolean matchesNode(Node node);
+
     readonly attribute DOMString nonce;
 };
 
 [ NoInterfaceObject ]
 interface SecurityPolicyDirective {
 };
+
 [Constructor(DOMString directiveName, DOMString directiveValue)]
 interface SecurityPolicySourceListDirective : SecurityPolicyDirective {
     boolean matchesURL(DOMString url);
     boolean matchesNode(Node node);
+
     readonly attribute boolean allowRedirects;
     readonly attribute boolean allowEval;
+
     // TODO: Bikeshed doesn’t like `Sequence`?
     readonly attribute SecurityPolicySource[] sources;
     readonly attribute DOMString directive;
@@ -50,6 +61,7 @@ enum SecurityPolicyMode {
     "EnforceMode",
     "ReportOnlyMode"
 };
+
 [Constructor(DOMString policy, SecurityPolicyMode mode)]
 interface SecurityPolicy {
     // Fetch’s 'Request' object has a URL and a RequestContext, which
@@ -57,15 +69,19 @@ interface SecurityPolicy {
     // requests. It lacks a redirect flag; not sure how to model that
     // yet. TODO.
     boolean allowRequest(Request request);
+
     // Inline checks can be done on a Node basis; given an HTMLScriptElement,
     // we’d skim through the `script-src` directive’s sources, checking for
     // hash and nonce matches.
     boolean allowNode(Node node);
+
     // One-offs. Maybe there’s a good way to fold these in somehow?
     boolean allowEval();
     boolean allowInlineEventHandler();
+
     // TODO: Bikeshed doesn’t like `Sequence`?
     readonly attribute SecurityPolicyDirective[] directives;
+
     readonly attribute SecurityPolicyMode mode;
     readonly attribute URL reportingEndpoint;
 };

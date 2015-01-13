@@ -25,6 +25,6 @@ interface CSSKeyframesRule : CSSRule {
   readonly attribute CSSRuleList cssRules;
 
   void            appendRule(DOMString rule);
-  void            deleteRule(DOMString key);
-  CSSKeyframeRule? findRule(DOMString key);
+  void            deleteRule(DOMString select);
+  CSSKeyframeRule? findRule(DOMString select);
 };
