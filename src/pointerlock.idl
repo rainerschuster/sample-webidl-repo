@@ -12,6 +12,6 @@ readonly attribute long movementX;
 readonly attribute long movementY;
 };
 partial dictionary MouseEventInit {
-attribute long movementX = 0;
-attribute long movementY = 0;
+long movementX = 0;
+long movementY = 0;
 };
