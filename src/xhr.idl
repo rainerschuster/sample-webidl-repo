@@ -1,5 +1,4 @@
-[NoInterfaceObject,
- Exposed=(Window,Worker)]
+[Exposed=(Window,Worker)]
 interface XMLHttpRequestEventTarget : EventTarget {
   // event handlers
   attribute EventHandler onloadstart;
