@@ -267,11 +267,9 @@ interface OrderedMap {
 
   getter any getByIndex(unsigned long index);
   setter void setByIndex(unsigned long index, any value);
-  deleter void removeByIndex(unsigned long index);
 
   getter any get(DOMString name);
   setter creator void set(DOMString name, any value);
-  deleter void remove(DOMString name);
 };
 
 interface Point { /* ... */ };
@@ -473,7 +471,6 @@ interface ItemList {
   attribute unsigned long length;
   getter object getItem(unsigned long index);
   creator setter object setItem(unsigned long index, object item);
-  deleter void removeItem(unsigned long index);
 };
 
 [ArrayClass]

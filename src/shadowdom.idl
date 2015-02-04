@@ -1,6 +1,8 @@
 interface ShadowRoot : DocumentFragment {
 Selection? getSelection();
 Element? elementFromPoint(double x, double y);
+sequence<Element> elementsFromPoint(double x, double y);
+CaretPosition? caretPositionFromPoint(double x, double y);
 readonly attribute Element? activeElement;
 readonly attribute Element host;
 readonly attribute ShadowRoot? olderShadowRoot;

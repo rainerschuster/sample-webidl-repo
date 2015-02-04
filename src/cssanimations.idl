@@ -1,14 +1,14 @@
 [Constructor(DOMString type, optional AnimationEventInit animationEventInitDict)]
-  interface AnimationEvent : Event {
-    readonly attribute DOMString animationName;
-    readonly attribute float elapsedTime;
-    readonly attribute DOMString pseudoElement;
-  };
-  dictionary AnimationEventInit : EventInit {
-    DOMString animationName = "";
-    float elapsedTime = 0.0;
-    DOMString pseudoElement = "";
-  };
+interface AnimationEvent : Event {
+  readonly attribute DOMString animationName;
+  readonly attribute float elapsedTime;
+  readonly attribute DOMString pseudoElement;
+};
+dictionary AnimationEventInit : EventInit {
+  DOMString animationName = "";
+  float elapsedTime = 0.0;
+  DOMString pseudoElement = "";
+};
 
 partial interface CSSRule {
     const unsigned short KEYFRAMES_RULE = 7;

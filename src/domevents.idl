@@ -1,9 +1,9 @@
 [Constructor(DOMString type, optional UIEventInit eventInitDict)] interface UIEvent : Event {
-readonly attribute WindowProxy? view;
+readonly attribute Window? view;
 readonly attribute long detail;
 };
 dictionary UIEventInit : EventInit {
-WindowProxy? view = null;
+Window? view = null;
 long detail = 0;
 };
 [Constructor(DOMString typeArg, optional FocusEventInit focusEventInitDict)] interface FocusEvent : UIEvent {
@@ -69,14 +69,6 @@ double deltaX = 0.0;
 double deltaY = 0.0;
 double deltaZ = 0.0;
 unsigned long deltaMode = 0;
-};
-[Constructor(DOMString typeArg, optional InputEventInit inputEventInitDict)] interface InputEvent : UIEvent {
-readonly attribute DOMString data;
-readonly attribute boolean isComposing;
-};
-dictionary InputEventInit : UIEventInit {
-DOMString data = "";
-boolean isComposing = false;
 };
 [Constructor(DOMString typeArg, optional KeyboardEventInit keyboardEventInitDict)] interface KeyboardEvent : UIEvent {
 const unsigned long DOM_KEY_LOCATION_STANDARD = 0x00;
