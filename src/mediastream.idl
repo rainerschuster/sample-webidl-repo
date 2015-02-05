@@ -75,7 +75,7 @@ interface MediaStreamErrorEvent : Event {
 readonly attribute MediaStreamError? error;
 };
 dictionary MediaStreamErrorEventInit : EventInit {
-MediaStreamError? error;
+MediaStreamError? error = null;
 };
 [NoInterfaceObject] interface NavigatorUserMedia {
 readonly attribute MediaDevices mediaDevices;
@@ -84,11 +84,11 @@ interface MediaDevices : EventTarget {
 attribute EventHandler ondevicechange;
 Promise<sequence<MediaDeviceInfo>> enumerateDevices ();
 };
-dictionary MediaDeviceInfo {
-DOMString deviceId;
-MediaDeviceKind kind;
-DOMString label;
-DOMString groupId;
+interface MediaDeviceInfo {
+readonly attribute DOMString deviceId;
+readonly attribute MediaDeviceKind kind;
+readonly attribute DOMString? label;
+readonly attribute DOMString? groupId;
 };
 enum MediaDeviceKind {
 "audioinput", "audiooutput", "videoinput"
