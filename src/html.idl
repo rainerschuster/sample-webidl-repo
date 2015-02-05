@@ -1453,6 +1453,8 @@ dictionary DragEventInit : MouseEventInit {
 Window implements GlobalEventHandlers;
 Window implements WindowEventHandlers;
 
+callback FrameRequestCallback = void (DOMHighResTimeStamp time);
+
 interface BarProp {
   attribute boolean visible;
 };
