@@ -1132,7 +1132,7 @@ enum CanvasFillRule { "nonzero", "evenodd" };
 
 dictionary CanvasRenderingContext2DSettings {
   boolean alpha = true;
-}
+};
 
 [Constructor(),
  Constructor(unsigned long width, unsigned long height),
@@ -1698,6 +1698,7 @@ interface NavigatorID {
   readonly attribute DOMString product; // constant "Gecko"
   boolean taintEnabled(); // constant false
   readonly attribute DOMString userAgent;
+  readonly attribute DOMString vendorSub;
 };
 
 [NoInterfaceObject, Exposed=(Window,Worker)]

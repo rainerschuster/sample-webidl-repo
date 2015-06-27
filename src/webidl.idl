@@ -269,7 +269,7 @@ interface OrderedMap {
   setter void setByIndex(unsigned long index, any value);
 
   getter any get(DOMString name);
-  setter creator void set(DOMString name, any value);
+  setter void set(DOMString name, any value);
 };
 
 interface Point { /* ... */ };
@@ -470,7 +470,7 @@ interface LotteryResults {
 interface ItemList {
   attribute unsigned long length;
   getter object getItem(unsigned long index);
-  creator setter object setItem(unsigned long index, object item);
+  setter object setItem(unsigned long index, object item);
 };
 
 [ArrayClass]

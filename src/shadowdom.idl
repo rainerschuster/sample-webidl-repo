@@ -5,22 +5,31 @@ sequence<Element> elementsFromPoint(double x, double y);
 CaretPosition? caretPositionFromPoint(double x, double y);
 readonly attribute Element? activeElement;
 readonly attribute Element host;
-readonly attribute ShadowRoot? olderShadowRoot;
-attribute DOMString innerHTML;
+[TreatNullAs=EmptyString] attribute DOMString innerHTML;
 readonly attribute StyleSheetList styleSheets;
 };
 partial interface Element {
-ShadowRoot createShadowRoot();
+ShadowRoot createShadowRoot(ShadowRootInit shadowRootInitDict);
 NodeList getDestinationInsertionPoints();
 readonly attribute ShadowRoot? shadowRoot;
 };
+dictionary ShadowRootInit {
+ShadowRootMode mode;
+};
+enum ShadowRootMode {
+"open", "closed"
+};
+partial interface Text {
+NodeList getDestinationInsertionPoints();
+};
 interface HTMLContentElement : HTMLElement {
 attribute DOMString select;
-NodeList getDistributedNodes();
+sequence<Node> getDistributedNodes();
 };
-interface HTMLShadowElement : HTMLElement {
-NodeList getDistributedNodes();
+partial dictionary EventInit {
+boolean scoped = false;
 };
 partial interface Event {
-readonly attribute object path;
+readonly attribute object deepPath;
+readonly attribute boolean scoped;
 };

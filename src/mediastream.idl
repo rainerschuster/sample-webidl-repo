@@ -28,9 +28,9 @@ readonly attribute MediaStreamTrackState readyState;
 attribute EventHandler onended;
 MediaStreamTrack clone();
 void stop();
-Capabilities getCapabilities();
+MediaTrackCapabilities getCapabilities();
 MediaTrackConstraints getConstraints();
-Settings getSettings();
+MediaTrackSettings getSettings();
 Promise<void> applyConstraints();
 attribute EventHandler onoverconstrained;
 };
@@ -39,6 +39,32 @@ enum MediaStreamTrackState {
 };
 enum SourceTypeEnum {
 "camera", "microphone"
+};
+dictionary MediaTrackSupportedConstraints {
+boolean width;
+boolean height;
+boolean aspectRatio;
+boolean frameRate;
+boolean facingMode;
+boolean volume;
+boolean sampleRate;
+boolean sampleSize;
+boolean echoCancellation;
+boolean deviceId;
+boolean groupId;
+};
+dictionary MediaTrackCapabilities {
+(long or LongRange) width;
+(long or LongRange) height;
+(double or DoubleRange) aspectRatio;
+(double or DoubleRange) frameRate;
+DOMString facingMode;
+(double or DoubleRange) volume;
+(long or LongRange) sampleRate;
+(long or LongRange) sampleSize;
+sequence<boolean> echoCancellation;
+DOMString deviceId;
+DOMString groupId;
 };
 dictionary MediaTrackConstraints : MediaTrackConstraintSet {
 sequence<MediaTrackConstraintSet> advanced;
@@ -55,6 +81,19 @@ ConstrainLong sampleSize;
 ConstrainBoolean echoCancellation;
 ConstrainDOMString deviceId;
 ConstrainDOMString groupId;
+};
+dictionary MediaTrackSettings {
+long width;
+long height;
+double aspectRatio;
+double frameRate;
+DOMString facingMode;
+double volume;
+long sampleRate;
+long sampleSize;
+boolean echoCancellation;
+DOMString deviceId;
+DOMString groupId;
 };
 [Constructor(DOMString type, MediaStreamTrackEventInit eventInitDict)]
 interface MediaStreamTrackEvent : Event {
@@ -87,8 +126,8 @@ Promise<sequence<MediaDeviceInfo>> enumerateDevices ();
 interface MediaDeviceInfo {
 readonly attribute DOMString deviceId;
 readonly attribute MediaDeviceKind kind;
-readonly attribute DOMString? label;
-readonly attribute DOMString? groupId;
+readonly attribute DOMString label;
+readonly attribute DOMString groupId;
 };
 enum MediaDeviceKind {
 "audioinput", "audiooutput", "videoinput"
@@ -97,7 +136,7 @@ partial interface NavigatorUserMedia {
 void getUserMedia(MediaStreamConstraints constraints, NavigatorUserMediaSuccessCallback successCallback, NavigatorUserMediaErrorCallback errorCallback);
 };
 partial interface MediaDevices {
-static Dictionary getSupportedConstraints(DOMString kind);
+MediaTrackSupportedConstraints getSupportedConstraints();
 Promise<MediaStream> getUserMedia( MediaStreamConstraints constraints);
 };
 dictionary MediaStreamConstraints {
@@ -110,22 +149,26 @@ callback NavigatorUserMediaSuccessCallback = void
 callback NavigatorUserMediaErrorCallback = void
 (MediaStreamError error)
 ;
-[NoInterfaceObject] interface       ConstrainablePattern {
+[NoInterfaceObject] interface ConstrainablePattern {
 Capabilities getCapabilities();
 Constraints getConstraints();
 Settings getSettings();
 Promise<void> applyConstraints();
 attribute EventHandler onoverconstrained;
 };
-dictionary ConstrainDoubleRange {
+dictionary DoubleRange {
 double max;
 double min;
+};
+dictionary ConstrainDoubleRange : DoubleRange {
 double exact;
 double ideal;
 };
-dictionary ConstrainLongRange {
+dictionary LongRange {
 long max;
 long min;
+};
+dictionary ConstrainLongRange : LongRange {
 long exact;
 long ideal;
 };

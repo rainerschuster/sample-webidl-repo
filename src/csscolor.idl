@@ -41,7 +41,7 @@ dictionary ColorStringifiers {
   ColorStringifierCallback cmyk;
 };
 
-callback ColorStringifierCallback = DOMString (CSSColor color, any...args);
+callback ColorStringifierCallback = DOMString (CSSColor color, any ...args);
 
 [Constructor(double h, double s, double l, optional double a=1),
  Constructor(RGBColor rgb),
