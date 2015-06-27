@@ -1700,6 +1700,7 @@ interface NavigatorID {
   readonly attribute DOMString product; // constant "Gecko"
   boolean taintEnabled(); // constant false
   readonly attribute DOMString userAgent;
+  readonly attribute DOMString vendorSub;
 };
 
 [NoInterfaceObject, Exposed=(Window,Worker)]

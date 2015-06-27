@@ -1,9 +1,11 @@
-[Constructor(USVString url, optional USVString base = "about:blank"), Exposed=(Window,Worker)]
+[Constructor(USVString url, optional USVString base),
+ Exposed=(Window,Worker)]
 interface URL {
   static USVString domainToASCII(USVString domain);
   static USVString domainToUnicode(USVString domain);
 };
 URL implements URLUtils;
+URL implements URLUtilsSearchParams;
 
 [NoInterfaceObject,
  Exposed=(Window,Worker)]
@@ -19,8 +21,13 @@ interface URLUtils {
            attribute USVString port;
            attribute USVString pathname;
            attribute USVString search;
-           attribute URLSearchParams searchParams;
            attribute USVString hash;
+};
+
+[NoInterfaceObject,
+ Exposed=(Window, Worker)]
+interface URLUtilsSearchParams {
+           attribute URLSearchParams searchParams;
 };
 
 [NoInterfaceObject,
@@ -38,7 +45,8 @@ interface URLUtilsReadOnly {
   readonly attribute USVString hash;
 };
 
-[Constructor(optional (USVString or URLSearchParams) init = ""), Exposed=(Window,Worker)]
+[Constructor(optional (USVString or URLSearchParams) init = ""),
+ Exposed=(Window,Worker)]
 interface URLSearchParams {
   void append(USVString name, USVString value);
   void delete(USVString name);

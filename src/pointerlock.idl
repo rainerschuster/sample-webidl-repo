@@ -2,8 +2,8 @@ partial interface Element {
 void requestPointerLock();
 };
 partial interface Document {
-attribute EventHandler? onpointerlockchange;
-attribute EventHandler? onpointerlockerror;
+attribute EventHandler onpointerlockchange;
+attribute EventHandler onpointerlockerror;
 readonly attribute Element? pointerLockElement;
 void exitPointerLock ();
 };

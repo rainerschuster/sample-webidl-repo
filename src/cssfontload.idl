@@ -48,6 +48,9 @@ callback ForEachCallback = void (FontFace font, long index, FontFaceSet self);
 interface FontFaceSet : EventTarget {
   // FontFaceSet is Set-like!
   setlike<FontFace>;
+  FontFaceSet add(FontFace font);
+  boolean delete(FontFace font);
+  void clear();
 
   // events for when loading state changes
   attribute EventHandler onloading;

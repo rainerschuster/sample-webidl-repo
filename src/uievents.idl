@@ -1,5 +1,0 @@
-partial interface KeyboardEvent /*: UIEvent*/ {
-static DOMString queryKeyCap();
-readonly attribute DOMString locale;
-static DOMString queryLocale();
-};

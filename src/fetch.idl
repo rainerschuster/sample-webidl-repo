@@ -40,6 +40,7 @@ interface Request {
   readonly attribute RequestMode mode;
   readonly attribute RequestCredentials credentials;
   readonly attribute RequestCache cache;
+  readonly attribute RequestRedirect redirect;
 
   [NewObject] Request clone();
 };
@@ -52,18 +53,20 @@ dictionary RequestInit {
   RequestMode mode;
   RequestCredentials credentials;
   RequestCache cache;
+  RequestRedirect redirect; // "manual" cannot be set
 };
 
 enum RequestContext {
-  "audio", "beacon", "cspreport", "download", "embed", "eventsource", "favicon", "fetch",
-  "font", "form", "frame", "hyperlink", "iframe", "image", "imageset", "import",
-  "internal", "location", "manifest", "object", "ping", "plugin", "prefetch", "script",
-  "serviceworker", "sharedworker", "subresource", "style", "track", "video", "worker",
-  "xmlhttprequest", "xslt"
+  "", "audio", "beacon", "cspreport", "download", "embed", "eventsource", "favicon",
+  "fetch", "font", "form", "frame", "hyperlink", "iframe", "image", "imageset", "import",
+  "internal", "location", "manifest", "metarefresh", "object", "ping", "plugin",
+  "prefetch", "preload", "prerender", "script", "sharedworker", "subresource", "style",
+  "track", "video", "worker", "xmlhttprequest", "xslt"
 };
 enum RequestMode { "same-origin", "no-cors", "cors" };
 enum RequestCredentials { "omit", "same-origin", "include" };
 enum RequestCache { "default", "no-store", "reload", "no-cache", "force-cache", "only-if-cached" };
+enum RequestRedirect { "follow", "error", "manual" };
 
 [Constructor(optional BodyInit body, optional ResponseInit init),
  Exposed=(Window,Worker)]
@@ -74,7 +77,6 @@ interface Response {
   readonly attribute ResponseType type;
 
   readonly attribute USVString url;
-           attribute boolean finalURL;
   readonly attribute unsigned short status;
   readonly attribute boolean ok;
   readonly attribute ByteString statusText;
