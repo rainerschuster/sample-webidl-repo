@@ -1,5 +1,5 @@
 [Constructor(),Constructor(MediaStream stream),Constructor(sequence<MediaStreamTrack> tracks)]
-interface MediaStream : EventTarget {
+[Exposed=Window] interface MediaStream : EventTarget {
 readonly attribute DOMString id;
 sequence<MediaStreamTrack> getAudioTracks();
 sequence<MediaStreamTrack> getVideoTracks();
@@ -14,7 +14,7 @@ attribute EventHandler oninactive;
 attribute EventHandler onaddtrack;
 attribute EventHandler onremovetrack;
 };
-interface MediaStreamTrack : EventTarget {
+[Exposed=Window] interface MediaStreamTrack : EventTarget {
 readonly attribute DOMString kind;
 readonly attribute DOMString id;
 readonly attribute DOMString label;
@@ -50,6 +50,7 @@ boolean volume;
 boolean sampleRate;
 boolean sampleSize;
 boolean echoCancellation;
+boolean latency;
 boolean deviceId;
 boolean groupId;
 };
@@ -63,6 +64,7 @@ DOMString facingMode;
 (long or LongRange) sampleRate;
 (long or LongRange) sampleSize;
 sequence<boolean> echoCancellation;
+(double or DoubleRange) latency;
 DOMString deviceId;
 DOMString groupId;
 };
@@ -79,6 +81,7 @@ ConstrainDouble volume;
 ConstrainLong sampleRate;
 ConstrainLong sampleSize;
 ConstrainBoolean echoCancellation;
+ConstrainDouble latency;
 ConstrainDOMString deviceId;
 ConstrainDOMString groupId;
 };
@@ -92,38 +95,36 @@ double volume;
 long sampleRate;
 long sampleSize;
 boolean echoCancellation;
+double latency;
 DOMString deviceId;
 DOMString groupId;
 };
 [Constructor(DOMString type, MediaStreamTrackEventInit eventInitDict)]
-interface MediaStreamTrackEvent : Event {
+[Exposed=Window] interface MediaStreamTrackEvent : Event {
 readonly attribute MediaStreamTrack track;
 };
 dictionary MediaStreamTrackEventInit : EventInit {
 };
-partial interface HTMLMediaElement {
-attribute MediaStream? srcObject;
-};
-[NoInterfaceObject] interface MediaStreamError {
+[Exposed=Window, NoInterfaceObject] interface MediaStreamError {
 readonly attribute DOMString name;
 readonly attribute DOMString? message;
 readonly attribute DOMString? constraintName;
 };
 [Constructor(DOMString type, MediaStreamErrorEventInit eventInitDict)]
-interface MediaStreamErrorEvent : Event {
+[Exposed=Window] interface MediaStreamErrorEvent : Event {
 readonly attribute MediaStreamError? error;
 };
 dictionary MediaStreamErrorEventInit : EventInit {
 MediaStreamError? error = null;
 };
-[NoInterfaceObject] interface NavigatorUserMedia {
+[Exposed=Window, NoInterfaceObject] interface NavigatorUserMedia {
 readonly attribute MediaDevices mediaDevices;
 };
-interface MediaDevices : EventTarget {
+[Exposed=Window] interface MediaDevices : EventTarget {
 attribute EventHandler ondevicechange;
 Promise<sequence<MediaDeviceInfo>> enumerateDevices ();
 };
-interface MediaDeviceInfo {
+[Exposed=Window] interface MediaDeviceInfo {
 readonly attribute DOMString deviceId;
 readonly attribute MediaDeviceKind kind;
 readonly attribute DOMString label;

@@ -89,7 +89,7 @@ dictionary ScrollIntoViewOptions : ScrollOptions {
 };
 
 partial interface Element {
-  DOMRectList getClientRects();
+  sequence<DOMRect> getClientRects();
   DOMRect getBoundingClientRect();
   void scrollIntoView();
   void scrollIntoView((boolean or object) arg);
@@ -123,7 +123,7 @@ partial interface HTMLImageElement {
 };
 
 partial interface Range {
-  DOMRectList getClientRects();
+  sequence<DOMRect> getClientRects();
   DOMRect getBoundingClientRect();
 };
 

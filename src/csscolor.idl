@@ -69,6 +69,34 @@ dictionary HSLColorInit {
   double a = 1;
 };
 
+[Constructor(double h, double w, double b, optional double a=1),
+ Constructor(RGBColor rgb),
+ Constructor(HSLColor hsl),
+ Constructor(HWBColor hwb),
+ Constructor(CSSColor css),
+ Constructor(optional HWBColorInit color),
+ Constructor(DOMString cssstring)]
+interface HWBColor : CSSColor {
+  attribute double h;
+  attribute double w;
+  attribute double b;
+  attribute double a;
+
+  RGBColor toRGB();
+  HSLColor toHSL();
+  HWBColor toHWB();
+
+  static attribute ColorStringifiers stringifiers;
+  attribute ColorStringifierType defaultStringifier;
+};
+
+dictionary HWBColorInit {
+  double h = 0;
+  double w = 0;
+  double b = 0;
+  double a = 1;
+};
+
 [Constructor([Clamp] octet r, [Clamp] octet g, [Clamp] octet b, optional [Clamp] octet a = 255),
  Constructor(RGBColor rgb),
  Constructor(HexColor hex),

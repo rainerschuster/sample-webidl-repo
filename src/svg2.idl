@@ -25,7 +25,6 @@ interface SVGGraphicsElement : SVGElement {
   DOMRect getBBox(optional SVGBoundingBoxOptions options);
   DOMMatrix? getCTM();
   DOMMatrix? getScreenCTM();
-  DOMMatrix getTransformToElement(SVGGraphicsElement element);
 };
 
 SVGGraphicsElement implements SVGTests;
@@ -246,7 +245,6 @@ interface SVGSVGElement : SVGGraphicsElement {
   [SameObject] readonly attribute SVGAnimatedLength width;
   [SameObject] readonly attribute SVGAnimatedLength height;
 
-  [SameObject] readonly attribute DOMRectReadOnly viewport;
   attribute float currentScale;
   [SameObject] readonly attribute DOMPointReadOnly currentTranslate;
 
@@ -611,8 +609,6 @@ interface SVGRadialGradientElement : SVGGradientElement {
 };
 
 interface SVGMeshElement : SVGGradientElement {
-  [SameObject] readonly attribute SVGAnimatedLength x;
-  [SameObject] readonly attribute SVGAnimatedLength y;
 };
 
 interface SVGMeshrowElement : SVGElement {
@@ -639,9 +635,11 @@ SVGPatternElement implements SVGFitToViewBox;
 SVGPatternElement implements SVGURIReference;
 SVGPatternElement implements SVGUnitTypes;
 
+interface SVGHatchElement : SVGElement {
+};
 
-
-
+interface SVGHatchpathElement : SVGElement {
+};
 
 interface SVGCursorElement : SVGElement {
   [SameObject] readonly attribute SVGAnimatedLength x;
@@ -705,7 +703,6 @@ interface SVGGraphicsElement : SVGElement {
   DOMRect getBBox(optional SVGBoundingBoxOptions options);
   DOMMatrix? getCTM();
   DOMMatrix? getScreenCTM();
-  DOMMatrix getTransformToElement(SVGGraphicsElement element);
 };
 
 SVGGraphicsElement implements SVGTests;
@@ -903,7 +900,6 @@ interface SVGSVGElement : SVGGraphicsElement {
   [SameObject] readonly attribute SVGAnimatedLength width;
   [SameObject] readonly attribute SVGAnimatedLength height;
 
-  [SameObject] readonly attribute DOMRectReadOnly viewport;
   attribute float currentScale;
   [SameObject] readonly attribute DOMPointReadOnly currentTranslate;
 
@@ -1268,8 +1264,6 @@ interface SVGRadialGradientElement : SVGGradientElement {
 };
 
 interface SVGMeshElement : SVGGradientElement {
-  [SameObject] readonly attribute SVGAnimatedLength x;
-  [SameObject] readonly attribute SVGAnimatedLength y;
 };
 
 interface SVGMeshrowElement : SVGElement {
@@ -1296,9 +1290,11 @@ SVGPatternElement implements SVGFitToViewBox;
 SVGPatternElement implements SVGURIReference;
 SVGPatternElement implements SVGUnitTypes;
 
+interface SVGHatchElement : SVGElement {
+};
 
-
-
+interface SVGHatchpathElement : SVGElement {
+};
 
 interface SVGCursorElement : SVGElement {
   [SameObject] readonly attribute SVGAnimatedLength x;
