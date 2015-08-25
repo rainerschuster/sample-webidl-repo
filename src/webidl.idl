@@ -6,9 +6,9 @@ interface Example {
 interface Paint { };
 
 interface SolidColor : Paint {
-  attribute float red;
-  attribute float green;
-  attribute float blue;
+  attribute double red;
+  attribute double green;
+  attribute double blue;
 };
 
 interface Pattern : Paint {
@@ -22,22 +22,22 @@ interface GraphicalWindow {
 
   attribute Paint currentPaint;
 
-  void drawRectangle(float x, float y, float width, float height);
+  void drawRectangle(double x, double y, double width, double height);
 
-  void drawText(float x, float y, DOMString text);
+  void drawText(double x, double y, DOMString text);
 };
 
 interface B : A {
-  void f(ArrayOfLongs x);
+  void f(SequenceOfLongs x);
 };
 
 interface A {
 };
 
-typedef long[] ArrayOfLongs;
+typedef sequence<long> SequenceOfLongs;
 
 // Typedef identifier: "number"
-typedef float number;
+typedef double number;
 
 // Interface identifier: "System"
 interface System {
@@ -47,7 +47,7 @@ interface System {
   object createObject(DOMString _interface);
 
   // Operation argument identifier: "interface"
-  object[] createObjectArray(DOMString interface);
+  sequence<object> getObjects(DOMString interface);
 
   // Operation has no identifier; it declares a getter.
   getter DOMString (DOMString keyName);
@@ -124,7 +124,7 @@ interface Util {
   const boolean DEBUG = false;
   const octet LF = 10;
   const unsigned long BIT_MASK = 0x0000fc00;
-  const float AVOGADRO = 6.022e23;
+  const double AVOGADRO = 6.022e23;
 };
 
 interface Animal {
@@ -166,41 +166,41 @@ interface IntegerSet {
 };
 
 interface ColorCreator {
-  object createColor(float v1, float v2, float v3, optional float alpha);
+  object createColor(double v1, double v2, double v3, optional double alpha);
 };
 
 interface ColorCreator {
-  object createColor(float v1, float v2, float v3);
-  object createColor(float v1, float v2, float v3, float alpha);
+  object createColor(double v1, double v2, double v3);
+  object createColor(double v1, double v2, double v3, double alpha);
 };
 
 interface Dictionary {
   readonly attribute unsigned long propertyCount;
 
-  getter float (DOMString propertyName);
-  setter void (DOMString propertyName, float propertyValue);
+  getter double (DOMString propertyName);
+  setter void (DOMString propertyName, double propertyValue);
 };
 
 interface Dictionary {
   readonly attribute unsigned long propertyCount;
 
-  getter float getProperty(DOMString propertyName);
-  setter void setProperty(DOMString propertyName, float propertyValue);
+  getter double getProperty(DOMString propertyName);
+  setter void setProperty(DOMString propertyName, double propertyValue);
 };
 
 interface Dictionary {
   readonly attribute unsigned long propertyCount;
 
-  float getProperty(DOMString propertyName);
-  void setProperty(DOMString propertyName, float propertyValue);
+  double getProperty(DOMString propertyName);
+  void setProperty(DOMString propertyName, double propertyValue);
 
-  getter float (DOMString propertyName);
-  setter void (DOMString propertyName, float propertyValue);
+  getter double (DOMString propertyName);
+  setter void (DOMString propertyName, double propertyValue);
 };
 
 interface NumberQuadrupler {
   // This operation simply returns four times the given number x.
-  legacycaller float compute(float x);
+  legacycaller double compute(double x);
 };
 
 interface A {
@@ -229,7 +229,7 @@ interface Student {
 interface Transaction {
   readonly attribute Account from;
   readonly attribute Account to;
-  readonly attribute float amount;
+  readonly attribute double amount;
   readonly attribute DOMString description;
   readonly attribute unsigned long number;
 
@@ -244,7 +244,7 @@ interface Account {
 interface Transaction {
   readonly attribute Account from;
   readonly attribute Account to;
-  readonly attribute float amount;
+  readonly attribute double amount;
   readonly attribute DOMString description;
   readonly attribute unsigned long number;
 
@@ -275,9 +275,9 @@ interface OrderedMap {
 interface Point { /* ... */ };
 
 interface Circle {
-  attribute float cx;
-  attribute float cy;
-  attribute float radius;
+  attribute double cx;
+  attribute double cy;
+  attribute double radius;
 
   static readonly attribute long triangulationCount;
   static Point triangulate(Circle c1, Circle c2, Circle c3);
@@ -288,7 +288,7 @@ interface A {
 };
 
 partial interface A {
-  void f(float x);
+  void f(double x);
   void g();
 };
 
@@ -298,20 +298,20 @@ partial interface A {
 
 interface A {
   /* f1 */ void f(DOMString a);
-  /* f2 */ void f(Node a, DOMString b, float... c);
+  /* f2 */ void f(Node a, DOMString b, double... c);
   /* f3 */ void f();
-  /* f4 */ void f(Event a, DOMString b, optional DOMString c, float... d);
+  /* f4 */ void f(Event a, DOMString b, optional DOMString c, double... d);
 };
 
 interface B {
   void f(DOMString x);
-  void f(float x);
+  void f(double x);
 };
 
 interface B {
   /* f1 */ void f(DOMString w);
-  /* f2 */ void f(long w, float x, Node y, Node z);
-  /* f3 */ void f(float w, float x, DOMString y, Node z);
+  /* f2 */ void f(long w, double x, Node y, Node z);
+  /* f3 */ void f(double w, double x, DOMString y, Node z);
 };
 
 interface SessionManager {
@@ -352,8 +352,8 @@ interface Something {
 
 [Constructor]
 interface Point {
-  attribute float x;
-  attribute float y;
+  attribute double x;
+  attribute double y;
 };
 
 dictionary PaintOptions {
@@ -363,16 +363,16 @@ dictionary PaintOptions {
 };
 
 interface GraphicsContext {
-  void drawRectangle(float width, float height, optional PaintOptions options);
+  void drawRectangle(double width, double height, optional PaintOptions options);
 };
 
 enum MealType { "rice", "noodles", "other" };
 
 interface Meal {
   attribute MealType type;
-  attribute float size;     // in grams
+  attribute double size;     // in grams
 
-  void initialize(MealType type, float size);
+  void initialize(MealType type, double size);
 };
 
 callback AsyncOperationCallback = void (DOMString status);
@@ -382,8 +382,8 @@ interface AsyncOperations {
 };
 
 interface Point {
-  attribute float x;
-  attribute float y;
+  attribute double x;
+  attribute double y;
 };
 
 typedef sequence<Point> Points;
@@ -450,33 +450,10 @@ interface Canvas {
 
   sequence<DOMString> getSupportedImageCodecs();
 
-  void drawPolygon(sequence<float> coordinates);
-  sequence<float> getLastDrawnPolygon();
+  void drawPolygon(sequence<double> coordinates);
+  sequence<double> getLastDrawnPolygon();
 
   // ...
-};
-
-[Constructor]
-interface LotteryResults {
-  readonly attribute unsigned short[] numbers;
-};
-
-[Constructor]
-interface LotteryResults {
-  attribute unsigned short[] numbers;
-};
-
-[ArrayClass]
-interface ItemList {
-  attribute unsigned long length;
-  getter object getItem(unsigned long index);
-  setter object setItem(unsigned long index, object item);
-};
-
-[ArrayClass]
-interface ImmutableItemList {
-  readonly attribute unsigned long length;
-  getter object getItem(unsigned long index);
 };
 
 interface GraphicsContext {
@@ -490,12 +467,12 @@ interface NodeList {
 };
 
 [Constructor,
- Constructor(float radius)]
+ Constructor(double radius)]
 interface Circle {
-  attribute float r;
-  attribute float cx;
-  attribute float cy;
-  readonly attribute float circumference;
+  attribute double r;
+  attribute double cx;
+  attribute double cy;
+  readonly attribute double circumference;
 };
 
 [Constructor(unsigned long patties, unsigned long cheeseSlices)]
@@ -554,6 +531,19 @@ interface Window {
   getter any (DOMString name);
   attribute DOMString name;
   // ...
+};
+
+[LegacyArrayClass]
+interface ItemList {
+  attribute unsigned long length;
+  getter object getItem(unsigned long index);
+  setter object setItem(unsigned long index, object item);
+};
+
+[LegacyArrayClass]
+interface ImmutableItemList {
+  readonly attribute unsigned long length;
+  getter object getItem(unsigned long index);
 };
 
 interface Example {
@@ -696,12 +686,12 @@ C implements A;
 interface A {
 
   /** * Calls computeSquareRoot on m, passing x as its argument. */
-  float doComputation(MathUtils m, float x);
+  double doComputation(MathUtils m, double x);
 };
 
 interface MathUtils {
   /** * If x is negative, throws a NotSupportedError. Otherwise, returns * the square root of x. */
-  float computeSquareRoot(float x);
+  double computeSquareRoot(double x);
 };
 
 interface Dahut {

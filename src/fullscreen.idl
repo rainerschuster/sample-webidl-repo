@@ -1,12 +1,12 @@
 partial interface Element {
-  void requestFullscreen();
+  Promise<void> requestFullscreen();
 };
 
 partial interface Document {
   readonly attribute boolean fullscreenEnabled;
   readonly attribute Element? fullscreenElement;
 
-  void exitFullscreen();
+  Promise<void> exitFullscreen();
 
   attribute EventHandler onfullscreenchange;
   attribute EventHandler onfullscreenerror;

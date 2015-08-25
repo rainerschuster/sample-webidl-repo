@@ -1,18 +1,34 @@
-interface Touch {
+[Constructor(TouchInit touchInitDict)] interface Touch {
 readonly attribute long identifier;
 readonly attribute EventTarget target;
-readonly attribute long screenX;
-readonly attribute long screenY;
-readonly attribute long clientX;
-readonly attribute long clientY;
-readonly attribute long pageX;
-readonly attribute long pageY;
+readonly attribute double screenX;
+readonly attribute double screenY;
+readonly attribute double clientX;
+readonly attribute double clientY;
+readonly attribute double pageX;
+readonly attribute double pageY;
+readonly attribute float radiusX;
+readonly attribute float radiusY;
+readonly attribute float rotationAngle;
+readonly attribute float force;
+};
+dictionary TouchInit {
+required long identifier;
+required EventTarget target;
+double clientX = 0;
+double clientY = 0;
+double screenX = 0;
+double screenY = 0;
+float radiusX = 0;
+float radiusY = 0;
+float rotationAngle = 0;
+float force = 0;
 };
 interface TouchList {
 readonly attribute unsigned long length;
 getter Touch? item (in unsigned long index);
 };
-interface TouchEvent : UIEvent {
+[Constructor(DOMString type, optional TouchEventInit eventInitDict)] interface TouchEvent : UIEvent {
 readonly attribute TouchList touches;
 readonly attribute TouchList targetTouches;
 readonly attribute TouchList changedTouches;
@@ -20,6 +36,15 @@ readonly attribute boolean altKey;
 readonly attribute boolean metaKey;
 readonly attribute boolean ctrlKey;
 readonly attribute boolean shiftKey;
+};
+dictionary TouchEventInit : UIEventInit {
+sequence<Touch> touches = [];
+sequence<Touch> targetTouches = [];
+sequence<Touch> changedTouches = [];
+boolean altKey;
+boolean metaKey;
+boolean ctrlKey;
+boolean shiftKey;
 };
 partial interface Document {
 Touch createTouch();

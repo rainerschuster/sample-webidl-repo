@@ -9,8 +9,9 @@ readonly attribute Element host;
 readonly attribute StyleSheetList styleSheets;
 };
 partial interface Element {
-ShadowRoot createShadowRoot(ShadowRootInit shadowRootInitDict);
-NodeList getDestinationInsertionPoints();
+ShadowRoot attachShadow(ShadowRootInit shadowRootInitDict);
+readonly attribute Element? assignedSlot;
+attribute DOMString slot;
 readonly attribute ShadowRoot? shadowRoot;
 };
 dictionary ShadowRootInit {
@@ -20,10 +21,10 @@ enum ShadowRootMode {
 "open", "closed"
 };
 partial interface Text {
-NodeList getDestinationInsertionPoints();
+readonly attribute Element? assignedSlot;
 };
-interface HTMLContentElement : HTMLElement {
-attribute DOMString select;
+interface HTMLSlotElement : HTMLElement {
+attribute DOMString name;
 sequence<Node> getDistributedNodes();
 };
 partial dictionary EventInit {

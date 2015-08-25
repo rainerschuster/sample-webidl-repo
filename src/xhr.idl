@@ -1,4 +1,4 @@
-[Exposed=(Window,Worker)]
+[Exposed=(Window,DedicatedWorker,SharedWorker)]
 interface XMLHttpRequestEventTarget : EventTarget {
   // event handlers
   attribute EventHandler onloadstart;
@@ -10,7 +10,7 @@ interface XMLHttpRequestEventTarget : EventTarget {
   attribute EventHandler onloadend;
 };
 
-[Exposed=(Window,Worker)]
+[Exposed=(Window,DedicatedWorker,SharedWorker)]
 interface XMLHttpRequestUpload : XMLHttpRequestEventTarget {
 };
 
@@ -24,7 +24,7 @@ enum XMLHttpRequestResponseType {
 };
 
 [Constructor,
- Exposed=(Window,Worker)]
+ Exposed=(Window,DedicatedWorker,SharedWorker)]
 interface XMLHttpRequest : XMLHttpRequestEventTarget {
   // event handler
   attribute EventHandler onreadystatechange;
@@ -75,7 +75,7 @@ interface FormData {
 };
 
 [Constructor(DOMString type, optional ProgressEventInit eventInitDict),
- Exposed=(Window,Worker)]
+ Exposed=(Window,DedicatedWorker,SharedWorker)]
 interface ProgressEvent : Event {
   readonly attribute boolean lengthComputable;
   readonly attribute unsigned long long loaded;
