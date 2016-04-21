@@ -80,17 +80,18 @@ partial interface Document {
 interface CaretPosition {
   readonly attribute Node offsetNode;
   readonly attribute unsigned long offset;
-  DOMRect? getClientRect();
+  [NewObject] DOMRect? getClientRect();
 };
 
-enum ScrollLogicalPosition { "start", "end" };
+enum ScrollLogicalPosition { "start", "center", "end", "nearest" };
 dictionary ScrollIntoViewOptions : ScrollOptions {
-  ScrollLogicalPosition block = "start";
+  ScrollLogicalPosition block = "center";
+  ScrollLogicalPosition inline = "center";
 };
 
 partial interface Element {
   sequence<DOMRect> getClientRects();
-  DOMRect getBoundingClientRect();
+  [NewObject] DOMRect getBoundingClientRect();
   void scrollIntoView();
   void scrollIntoView((boolean or object) arg);
   void scroll(optional ScrollToOptions options);
@@ -124,7 +125,7 @@ partial interface HTMLImageElement {
 
 partial interface Range {
   sequence<DOMRect> getClientRects();
-  DOMRect getBoundingClientRect();
+  [NewObject] DOMRect getBoundingClientRect();
 };
 
 partial interface MouseEvent {
@@ -168,7 +169,7 @@ interface GeometryUtils {
 
 Text implements GeometryUtils; // like Range
 Element implements GeometryUtils;
-PseudoElement implements GeometryUtils;
+CSSPseudoElement implements GeometryUtils;
 Document implements GeometryUtils;
 
-typedef (Text or Element or PseudoElement or Document) GeometryNode;
+typedef (Text or Element or CSSPseudoElement or Document) GeometryNode;

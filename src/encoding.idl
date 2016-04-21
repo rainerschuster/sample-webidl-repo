@@ -15,8 +15,7 @@ interface TextDecoder {
   readonly attribute boolean ignoreBOM;
   USVString decode(optional BufferSource input, optional TextDecodeOptions options);
 };
-
-[Constructor(optional DOMString utfLabel = "utf-8"),
+[Constructor,
  Exposed=Window,Worker]
 interface TextEncoder {
   readonly attribute DOMString encoding;

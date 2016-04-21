@@ -1,3 +1,9 @@
+partial interface Document {
+            // Deprecated in this specification
+            Touch createTouch (WindowProxy view, EventTarget target, long identifier, double pageX, double pageY, double screenX, double screenY);
+            // Deprecated in this specification
+            TouchList createTouchList (Touch... touches);
+          };
 [Constructor(TouchInit touchInitDict)] interface Touch {
 readonly attribute long identifier;
 readonly attribute EventTarget target;
@@ -19,6 +25,8 @@ double clientX = 0;
 double clientY = 0;
 double screenX = 0;
 double screenY = 0;
+double pageX = 0;
+double pageY = 0;
 float radiusX = 0;
 float radiusY = 0;
 float rotationAngle = 0;
@@ -37,16 +45,14 @@ readonly attribute boolean metaKey;
 readonly attribute boolean ctrlKey;
 readonly attribute boolean shiftKey;
 };
-dictionary TouchEventInit : UIEventInit {
+dictionary TouchEventInit : EventModifierInit {
 sequence<Touch> touches = [];
 sequence<Touch> targetTouches = [];
 sequence<Touch> changedTouches = [];
-boolean altKey;
-boolean metaKey;
-boolean ctrlKey;
-boolean shiftKey;
 };
-partial interface Document {
-Touch createTouch();
-TouchList createTouchList();
+partial interface GlobalEventHandlers {
+attribute EventHandler ontouchstart;
+attribute EventHandler ontouchend;
+attribute EventHandler ontouchmove;
+attribute EventHandler ontouchcancel;
 };

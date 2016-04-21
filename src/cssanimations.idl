@@ -28,3 +28,9 @@ interface CSSKeyframesRule : CSSRule {
   void            deleteRule(DOMString select);
   CSSKeyframeRule? findRule(DOMString select);
 };
+
+partial interface GlobalEventHandlers {
+  attribute EventHandler onanimationstart;
+  attribute EventHandler onanimationiteration;
+  attribute EventHandler onanimationend;
+};

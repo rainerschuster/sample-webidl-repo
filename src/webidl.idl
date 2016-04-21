@@ -2,7 +2,6 @@
 interface Example {
   attribute long something;
 };
-
 interface Paint { };
 
 interface SolidColor : Paint {
@@ -26,7 +25,6 @@ interface GraphicalWindow {
 
   void drawText(double x, double y, DOMString text);
 };
-
 interface B : A {
   void f(SequenceOfLongs x);
 };
@@ -35,14 +33,13 @@ interface A {
 };
 
 typedef sequence<long> SequenceOfLongs;
-
 // Typedef identifier: "number"
 typedef double number;
 
 // Interface identifier: "System"
 interface System {
 
-  // Operation identifier: "createObject"
+  // Operation identifier:          "createObject"
   // Operation argument identifier: "interface"
   object createObject(DOMString _interface);
 
@@ -62,7 +59,6 @@ interface TextField {
   // Attribute identifier: "value"
   attribute DOMString? _value;
 };
-
 interface A {
   void f();
   void g();
@@ -72,7 +68,6 @@ interface B : A {
   void f();
   void g(DOMString x);
 };
-
 callback interface Options {
   attribute DOMString? option1;
   attribute DOMString? option2;
@@ -82,7 +77,6 @@ callback interface Options {
 interface A {
   void doTask(DOMString type, Options options);
 };
-
 dictionary Options {
   DOMString? option1;
   DOMString? option2;
@@ -92,7 +86,6 @@ dictionary Options {
 interface A {
   void doTask(DOMString type, Options options);
 };
-
 interface Animal {
   attribute DOMString name;
 };
@@ -104,7 +97,6 @@ interface Human : Animal {
 interface Dog : Animal {
   attribute Human? owner;
 };
-
 interface Node {
   readonly attribute DOMString nodeName;
   readonly attribute Node? parentNode;
@@ -115,18 +107,15 @@ interface Node {
 callback interface EventListener {
   void handleEvent(Event event);
 };
-
 interface A {
   const short rambaldi = 47;
 };
-
 interface Util {
   const boolean DEBUG = false;
   const octet LF = 10;
   const unsigned long BIT_MASK = 0x0000fc00;
   const double AVOGADRO = 6.022e23;
 };
-
 interface Animal {
 
   // A simple attribute that can be set to any string value.
@@ -142,7 +131,6 @@ interface Person : Animal {
   // specified in the description of Person.
   inherit attribute DOMString name;
 };
-
 interface Dimensions {
   attribute unsigned long width;
   attribute unsigned long height;
@@ -157,37 +145,31 @@ interface Button {
   void setDimensions(Dimensions size);
   void setDimensions(unsigned long width, unsigned long height);
 };
-
 interface IntegerSet {
   readonly attribute unsigned long cardinality;
 
   void union(long... ints);
   void intersection(long... ints);
 };
-
 interface ColorCreator {
   object createColor(double v1, double v2, double v3, optional double alpha);
 };
-
 interface ColorCreator {
   object createColor(double v1, double v2, double v3);
   object createColor(double v1, double v2, double v3, double alpha);
 };
-
 interface Dictionary {
   readonly attribute unsigned long propertyCount;
 
   getter double (DOMString propertyName);
   setter void (DOMString propertyName, double propertyValue);
 };
-
 interface Dictionary {
   readonly attribute unsigned long propertyCount;
 
   getter double getProperty(DOMString propertyName);
   setter void setProperty(DOMString propertyName, double propertyValue);
 };
-
 interface Dictionary {
   readonly attribute unsigned long propertyCount;
 
@@ -197,26 +179,21 @@ interface Dictionary {
   getter double (DOMString propertyName);
   setter void (DOMString propertyName, double propertyValue);
 };
-
 interface NumberQuadrupler {
   // This operation simply returns four times the given number x.
   legacycaller double compute(double x);
 };
-
 interface A {
   stringifier DOMString ();
 };
-
 interface A {
   stringifier;
 };
-
 [Constructor]
 interface Student {
   attribute unsigned long id;
   stringifier attribute DOMString name;
 };
-
 [Constructor]
 interface Student {
   attribute unsigned long id;
@@ -225,7 +202,6 @@ interface Student {
 
   stringifier DOMString ();
 };
-
 interface Transaction {
   readonly attribute Account from;
   readonly attribute Account to;
@@ -240,7 +216,6 @@ interface Account {
   DOMString name;
   unsigned long number;
 };
-
 interface Transaction {
   readonly attribute Account from;
   readonly attribute Account to;
@@ -257,11 +232,9 @@ interface Account {
 
   serializer = number;
 };
-
 interface A {
   getter DOMString toWord(unsigned long index);
 };
-
 interface OrderedMap {
   readonly attribute unsigned long size;
 
@@ -271,7 +244,6 @@ interface OrderedMap {
   getter any get(DOMString name);
   setter void set(DOMString name, any value);
 };
-
 interface Point { /* ... */ };
 
 interface Circle {
@@ -282,7 +254,6 @@ interface Circle {
   static readonly attribute long triangulationCount;
   static Point triangulate(Circle c1, Circle c2, Circle c3);
 };
-
 interface A {
   void f();
 };
@@ -295,25 +266,21 @@ partial interface A {
 partial interface A {
   void g(DOMString x);
 };
-
 interface A {
   /* f1 */ void f(DOMString a);
   /* f2 */ void f(Node a, DOMString b, double... c);
   /* f3 */ void f();
   /* f4 */ void f(Event a, DOMString b, optional DOMString c, double... d);
 };
-
 interface B {
   void f(DOMString x);
   void f(double x);
 };
-
 interface B {
   /* f1 */ void f(DOMString w);
   /* f2 */ void f(long w, double x, Node y, Node z);
   /* f3 */ void f(double w, double x, DOMString y, Node z);
 };
-
 interface SessionManager {
   Session getSessionForUser(DOMString username);
   readonly attribute unsigned long sessionCount;
@@ -325,7 +292,6 @@ interface Session {
   readonly attribute DOMString username;
   // ...
 };
-
 dictionary B : A {
   long b;
   long a;
@@ -345,11 +311,9 @@ partial dictionary A {
   long h;
   long d;
 };
-
 interface Something {
   void f(A a);
 };
-
 [Constructor]
 interface Point {
   attribute double x;
@@ -365,7 +329,6 @@ dictionary PaintOptions {
 interface GraphicsContext {
   void drawRectangle(double width, double height, optional PaintOptions options);
 };
-
 enum MealType { "rice", "noodles", "other" };
 
 interface Meal {
@@ -374,13 +337,11 @@ interface Meal {
 
   void initialize(MealType type, double size);
 };
-
 callback AsyncOperationCallback = void (DOMString status);
 
 interface AsyncOperations {
   void performOperation(AsyncOperationCallback whenFinished);
 };
-
 interface Point {
   attribute double x;
   attribute double y;
@@ -392,21 +353,17 @@ interface Widget {
   boolean pointWithinBounds(Point p);
   boolean allPointsWithinBounds(Points ps);
 };
-
 interface Window { ... };
 interface SomeFunctionality { ... };
 Window implements SomeFunctionality;
-
 interface Gizmo { ... };
 interface MoreFunctionality { ... };
 SomeFunctionality implements MoreFunctionality;
 Gizmo implements SomeFunctionality;
-
 interface Gizmo { ... };
 interface MoreFunctionality { ... };
 Gizmo implements SomeFunctionality;
 Gizmo implements MoreFunctionality;
-
 interface A { attribute long x; };
 interface B { attribute long x; };
 A implements B;  // B::x would clash with A::x
@@ -421,7 +378,6 @@ interface H { attribute long z; };
 interface I { attribute long z; };
 F implements H;
 F implements I;  // H::z and I::z would clash when mixed in to F
-
 interface Entry {
   readonly attribute unsigned short entryType;
   // ...
@@ -435,17 +391,14 @@ interface Observable {
 };
 
 Entry implements Observable;
-
 interface MyConstants {
   const boolean? ARE_WE_THERE_YET = false;
 };
-
 interface Node {
   readonly attribute DOMString? namespaceURI;
   readonly attribute Node? parentNode;
   // ...
 };
-
 interface Canvas {
 
   sequence<DOMString> getSupportedImageCodecs();
@@ -455,12 +408,10 @@ interface Canvas {
 
   // ...
 };
-
 interface GraphicsContext {
   void setColor(octet red, octet green, octet blue);
   void setColorClamped([Clamp] octet red, [Clamp] octet green, [Clamp] octet blue);
 };
-
 interface NodeList {
   Node item(unsigned long index);
   readonly attribute unsigned long length;
@@ -474,24 +425,23 @@ interface Circle {
   attribute double cy;
   readonly attribute double circumference;
 };
-
 [Constructor(unsigned long patties, unsigned long cheeseSlices)]
 dictionary BurgerOrder {
   unsigned long pattyCount;
   unsigned long cheeseSliceCount;
 };
-
 interface GraphicsContext {
   void setColor(octet red, octet green, octet blue);
   void setColorEnforcedRange([EnforceRange] octet red, [EnforceRange] octet green, [EnforceRange] octet blue);
 };
-
 [PrimaryGlobal]
 interface Window {
   ...
 };
 
-// By using the same identifier Worker for both SharedWorkerGlobalScope // and DedicatedWorkerGlobalScope, both can be addressed in an [Exposed] // extended attribute at once.
+// By using the same identifier Worker for both SharedWorkerGlobalScope
+// and DedicatedWorkerGlobalScope, both can be addressed in an [Exposed]
+// extended attribute at once.
 [Global=Worker]
 interface SharedWorkerGlobalScope : WorkerGlobalScope {
   ...
@@ -508,31 +458,31 @@ interface MathUtils {
   static double someComplicatedFunction(double x, double y);
 };
 
-// WorkerUtils is only available in workers. Evaluating WorkerUtils // in the global scope of a worker would give you its interface object, while // doing so on the main thread will give you a ReferenceError.
+// WorkerUtils is only available in workers.  Evaluating WorkerUtils
+// in the global scope of a worker would give you its interface object, while
+// doing so on the main thread will give you a ReferenceError.
 [Exposed=Worker]
 interface WorkerUtils {
   static void setPriority(double x);
 };
 
-// Node is only available on the main thread. Evaluating Node // in the global scope of a worker would give you a ReferenceError.
+// Node is only available on the main thread.  Evaluating Node
+// in the global scope of a worker would give you a ReferenceError.
 interface Node {
   ...
 };
-
 [ImplicitThis]
 interface Window {
   ...
   attribute DOMString name;
   void alert(DOMString message);
 };
-
 [PrimaryGlobal]
 interface Window {
   getter any (DOMString name);
   attribute DOMString name;
   // ...
 };
-
 [LegacyArrayClass]
 interface ItemList {
   attribute unsigned long length;
@@ -545,23 +495,19 @@ interface ImmutableItemList {
   readonly attribute unsigned long length;
   getter object getItem(unsigned long index);
 };
-
 interface Example {
   [LenientThis] attribute DOMString x;
   attribute DOMString y;
 };
-
 [NamedConstructor=Audio,
  NamedConstructor=Audio(DOMString src)]
 interface HTMLAudioElement : HTMLMediaElement {
   // ...
 };
-
 interface Document : Node {
   [NewObject] Element createElement(DOMString localName);
   ...
 };
-
 interface Storage {
   void addEntry(unsigned long key, any value);
 };
@@ -570,7 +516,6 @@ interface Storage {
 interface Query {
   any lookupEntry(unsigned long key);
 };
-
 interface StringMap {
   readonly attribute unsigned long length;
   getter DOMString lookup(DOMString key);
@@ -581,7 +526,6 @@ interface StringMap2 {
   readonly attribute unsigned long length;
   getter DOMString lookup(DOMString key);
 };
-
 interface Name {
   attribute DOMString full;
   attribute DOMString family;
@@ -592,17 +536,27 @@ interface Person {
   [PutForwards=full] readonly attribute Name name;
   attribute unsigned short age;
 };
-
 interface Counter {
   [Replaceable] readonly attribute unsigned long value;
   void increment();
 };
-
 interface Document : Node {
   [SameObject] readonly attribute DOMImplementation implementation;
   ...
 };
+interface PowerfulFeature {
+  // This call will succeed in all contexts.
+  Promise <Result> calculateNotSoSecretResult();
 
+  // This operation will not be exposed to a non-secure context. In such a context,
+  // there will be no "calculateSecretResult" property on PowerfulFeature.prototype.
+  [SecureContext] Promise<Result> calculateSecretResult();
+
+  // The same applies here: the attribute will not be exposed to a non-secure context,
+  // and in a non-secure context there will be no "secretBoolean" property on
+  // PowerfulFeature.prototype.
+  [SecureContext] readonly attribute boolean secretBoolean;
+};
 callback OccurrenceHandler = void (DOMString details);
 
 [TreatNonObjectAsNull]
@@ -612,14 +566,12 @@ interface Manager {
   attribute OccurrenceHandler? handler1;
   attribute ErrorHandler? handler2;
 };
-
 interface Dog {
   attribute DOMString name;
   [TreatNullAs=EmptyString] attribute DOMString owner;
 
   boolean isMemberOfBreed([TreatNullAs=EmptyString] DOMString breedName);
 };
-
 interface A1 {
   [Unforgeable] readonly attribute DOMString x;
 };
@@ -652,17 +604,14 @@ A3 implements A2;
 interface B5 : A3 {
   void x();  // Invalid; would be shadowed by A3's mixed-in copy of A2's x.
 };
-
 interface System {
   [Unforgeable] readonly attribute DOMString username;
-  readonly attribute Date loginTime;
+  readonly attribute long long loginTime;
 };
-
 interface Thing {
   void f();
-  [Unscopeable] g();
+  [Unscopable] g();
 };
-
 [NoInterfaceObject]
 interface Foo {
 };
@@ -670,9 +619,7 @@ interface Foo {
 partial interface Window {
   attribute Foo foo;
 };
-
-void forEach(Function callback, optional any thisArg = undefined);
-
+void forEach(Function callback, optional any thisArg);
 interface A {
   void f();
 };
@@ -682,18 +629,21 @@ B implements A;
 
 interface C { };
 C implements A;
-
 interface A {
 
-  /** * Calls computeSquareRoot on m, passing x as its argument. */
+  /**
+   * Calls computeSquareRoot on m, passing x as its argument.
+   */
   double doComputation(MathUtils m, double x);
 };
 
 interface MathUtils {
-  /** * If x is negative, throws a NotSupportedError. Otherwise, returns * the square root of x. */
+  /**
+   * If x is negative, throws a NotSupportedError.  Otherwise, returns
+   * the square root of x.
+   */
   double computeSquareRoot(double x);
 };
-
 interface Dahut {
   attribute DOMString type;
 };
@@ -702,15 +652,10 @@ interface ExceptionThrower {
   // This attribute always throws a NotSupportedError and never returns a value.
   attribute long valueOf;
 };
-
 typedef (Int8Array or Int16Array or Int32Array or
          Uint8Array or Uint16Array or Uint32Array or Uint8ClampedArray or
          Float32Array or Float64Array or DataView) ArrayBufferView;
-
 typedef (ArrayBufferView or ArrayBuffer) BufferSource;
-
 typedef unsigned long long DOMTimeStamp;
-
 callback Function = any (any... arguments);
-
 callback VoidFunction = void ();

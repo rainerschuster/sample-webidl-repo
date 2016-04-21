@@ -8,11 +8,9 @@ interface CSSFontFaceRule : CSSRule {
   attribute DOMString variant;
   attribute DOMString featureSettings;
 }
-
 partial interface CSSRule {
   const unsigned short FONT_FEATURE_VALUES_RULE = 14;
 }
-
 interface CSSFontFeatureValuesRule : CSSRule {
   attribute DOMString fontFamily;
   readonly attribute CSSFontFeatureValuesMap annotation;

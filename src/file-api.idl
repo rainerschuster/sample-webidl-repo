@@ -1,4 +1,6 @@
-[Constructor, Constructor(sequence<(ArrayBuffer or ArrayBufferView or Blob or DOMString)> blobParts, optional BlobPropertyBag options), Exposed=Window,Worker] interface Blob {
+[Constructor, 
+     Constructor(sequence<(ArrayBuffer or ArrayBufferView or Blob or DOMString)> blobParts, optional BlobPropertyBag options), Exposed=Window,Worker] 
+    interface Blob {
       
       readonly attribute unsigned long long size;
       readonly attribute DOMString type;
@@ -18,8 +20,11 @@
       DOMString type = "";
   
     };
+    
 
-[Constructor(sequence<(Blob or DOMString or ArrayBufferView or ArrayBuffer)> fileBits, [EnsureUTF16] DOMString fileName, optional FilePropertyBag options), Exposed=Window,Worker] interface File : Blob {
+[Constructor(sequence<(Blob or DOMString or ArrayBufferView or ArrayBuffer)> fileBits, 
+[EnsureUTF16] DOMString fileName, optional FilePropertyBag options), Exposed=Window,Worker]
+interface File : Blob {
 
   readonly attribute DOMString name;
   readonly attribute long long lastModified;
@@ -32,13 +37,16 @@ dictionary FilePropertyBag {
       long long lastModified;
   
 };
+    
 
-[Exposed=Window,Worker] interface FileList {
+    [Exposed=Window,Worker] interface FileList {
       getter File? item(unsigned long index);
       readonly attribute unsigned long length;
     };
+    
 
-[Constructor, Exposed=Window,Worker]
+
+  [Constructor, Exposed=Window,Worker]
   interface FileReader: EventTarget {
 
     // async read methods
@@ -70,8 +78,10 @@ dictionary FilePropertyBag {
     attribute EventHandler onloadend;
 
   };
+    
 
-[Constructor, Exposed=Worker]
+
+  [Constructor, Exposed=Worker]
   interface FileReaderSync {
 
     // Synchronously return strings
@@ -80,6 +90,8 @@ dictionary FilePropertyBag {
     DOMString readAsText(Blob blob, optional DOMString label);
     DOMString readAsDataURL(Blob blob);
   };
+  
+
 
 partial interface URL {
 

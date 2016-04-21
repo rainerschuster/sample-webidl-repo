@@ -6,6 +6,7 @@ interface ArrayBuffer {
 };
 ArrayBuffer implements Transferable;
 
+
 [NoInterfaceObject]
 interface ArrayBufferView {
     readonly attribute ArrayBuffer buffer;

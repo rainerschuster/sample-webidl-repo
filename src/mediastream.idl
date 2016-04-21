@@ -9,8 +9,6 @@ void addTrack(MediaStreamTrack track);
 void removeTrack(MediaStreamTrack track);
 MediaStream clone();
 readonly attribute boolean active;
-attribute EventHandler onactive;
-attribute EventHandler oninactive;
 attribute EventHandler onaddtrack;
 attribute EventHandler onremovetrack;
 };
@@ -22,8 +20,6 @@ attribute boolean enabled;
 readonly attribute boolean muted;
 attribute EventHandler onmute;
 attribute EventHandler onunmute;
-readonly attribute boolean _readonly;
-readonly attribute boolean remote;
 readonly attribute MediaStreamTrackState readyState;
 attribute EventHandler onended;
 MediaStreamTrack clone();
@@ -41,30 +37,32 @@ enum SourceTypeEnum {
 "camera", "microphone"
 };
 dictionary MediaTrackSupportedConstraints {
-boolean width;
-boolean height;
-boolean aspectRatio;
-boolean frameRate;
-boolean facingMode;
-boolean volume;
-boolean sampleRate;
-boolean sampleSize;
-boolean echoCancellation;
-boolean latency;
-boolean deviceId;
-boolean groupId;
+boolean width = true;
+boolean height = true;
+boolean aspectRatio = true;
+boolean frameRate = true;
+boolean facingMode = true;
+boolean volume = true;
+boolean sampleRate = true;
+boolean sampleSize = true;
+boolean echoCancellation = true;
+boolean latency = true;
+boolean channelCount = true;
+boolean deviceId = true;
+boolean groupId = true;
 };
 dictionary MediaTrackCapabilities {
 (long or LongRange) width;
 (long or LongRange) height;
 (double or DoubleRange) aspectRatio;
 (double or DoubleRange) frameRate;
-DOMString facingMode;
+sequence<DOMString> facingMode;
 (double or DoubleRange) volume;
 (long or LongRange) sampleRate;
 (long or LongRange) sampleSize;
 sequence<boolean> echoCancellation;
 (double or DoubleRange) latency;
+(long or LongRange) channelCount;
 DOMString deviceId;
 DOMString groupId;
 };
@@ -82,6 +80,7 @@ ConstrainLong sampleRate;
 ConstrainLong sampleSize;
 ConstrainBoolean echoCancellation;
 ConstrainDouble latency;
+ConstrainLong channelCount;
 ConstrainDOMString deviceId;
 ConstrainDOMString groupId;
 };
@@ -96,29 +95,35 @@ long sampleRate;
 long sampleSize;
 boolean echoCancellation;
 double latency;
+long channelCount;
 DOMString deviceId;
 DOMString groupId;
 };
+enum VideoFacingModeEnum {
+"user", "environment", "left", "right"
+};
 [Constructor(DOMString type, MediaStreamTrackEventInit eventInitDict)]
 [Exposed=Window] interface MediaStreamTrackEvent : Event {
-readonly attribute MediaStreamTrack track;
+[SameObject] readonly attribute MediaStreamTrack track;
 };
 dictionary MediaStreamTrackEventInit : EventInit {
 };
-[Exposed=Window, NoInterfaceObject] interface MediaStreamError {
-readonly attribute DOMString name;
-readonly attribute DOMString? message;
-readonly attribute DOMString? constraintName;
+[Constructor(DOMString type, OverconstrainedErrorEventInit eventInitDict)]
+[Exposed=Window] interface OverconstrainedErrorEvent : Event {
+readonly attribute OverconstrainedError? error;
 };
-[Constructor(DOMString type, MediaStreamErrorEventInit eventInitDict)]
-[Exposed=Window] interface MediaStreamErrorEvent : Event {
-readonly attribute MediaStreamError? error;
+dictionary OverconstrainedErrorEventInit : EventInit {
+OverconstrainedError? error = null;
 };
-dictionary MediaStreamErrorEventInit : EventInit {
-MediaStreamError? error = null;
+[Constructor(DOMString type, ErrorEventInit eventInitDict)]
+[Exposed=Window] interface ErrorEvent : Event {
+readonly attribute Error? error;
+};
+dictionary ErrorEventInit : EventInit {
+Error? error = null;
 };
 [Exposed=Window, NoInterfaceObject] interface NavigatorUserMedia {
-readonly attribute MediaDevices mediaDevices;
+[SameObject] readonly attribute MediaDevices mediaDevices;
 };
 [Exposed=Window] interface MediaDevices : EventTarget {
 attribute EventHandler ondevicechange;
@@ -132,6 +137,9 @@ readonly attribute DOMString groupId;
 };
 enum MediaDeviceKind {
 "audioinput", "audiooutput", "videoinput"
+};
+interface InputDeviceInfo : MediaDeviceInfo {
+MediaTrackCapabilities getCapabilities();
 };
 partial interface NavigatorUserMedia {
 void getUserMedia(MediaStreamConstraints constraints, NavigatorUserMediaSuccessCallback successCallback, NavigatorUserMediaErrorCallback errorCallback);
@@ -150,6 +158,9 @@ callback NavigatorUserMediaSuccessCallback = void
 callback NavigatorUserMediaErrorCallback = void
 (MediaStreamError error)
 ;
+partial interface HTMLIFrameElement {
+attribute boolean allowUserMedia;
+};
 [NoInterfaceObject] interface ConstrainablePattern {
 Capabilities getCapabilities();
 Constraints getConstraints();
@@ -181,19 +192,12 @@ dictionary ConstrainDOMStringParameters {
 (DOMString or sequence<DOMString>) exact;
 (DOMString or sequence<DOMString>) ideal;
 };
-typedef (long or ConstrainLongRange) ConstrainLong
-;
-typedef (double or ConstrainDoubleRange) ConstrainDouble
-;
-typedef (boolean or ConstrainBooleanParameters) ConstrainBoolean
-;
-typedef (DOMString or sequence<DOMString> or ConstrainDOMStringParameters) ConstrainDOMString
-;
+dictionary Capabilities {
+};
+dictionary Settings {
+};
 dictionary ConstraintSet {
 };
 dictionary Constraints : ConstraintSet {
 sequence<ConstraintSet> advanced;
-};
-enum VideoFacingModeEnum {
-"user", "environment", "left", "right"
 };
