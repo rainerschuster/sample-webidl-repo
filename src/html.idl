@@ -988,7 +988,7 @@ interface HTMLSlotElement : HTMLElement {
 dictionary AssignedNodesOptions {
   boolean flatten = false;
 };
-typedef /*(*/CanvasRenderingContext2D/* or WebGLRenderingContext)*/ RenderingContext;
+typedef (CanvasRenderingContext2D or WebGLRenderingContext) RenderingContext;
 
 interface HTMLCanvasElement : HTMLElement {
   [CEReactions] attribute unsigned long width;

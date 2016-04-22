@@ -1,0 +1,31 @@
+enum AutoKeyword { "auto" };
+enum DirectionSetting { "" /* horizontal */, "rl", "lr" };
+enum LineAlignSetting { "start", "center", "end" };
+enum PositionAlignSetting { "start", "center", "end", "auto" };
+enum AlignSetting { "start", "center", "end", "left", "right" };
+[Constructor(double startTime, double endTime, DOMString text)]
+interface VTTCue : TextTrackCue {
+  attribute VTTRegion? region;
+  attribute DirectionSetting vertical;
+  attribute boolean snapToLines;
+  attribute (double or AutoKeyword) line;
+  attribute LineAlignSetting lineAlign;
+  attribute (double or AutoKeyword) position;
+  attribute PositionAlignSetting positionAlign;
+  attribute double size;
+  attribute AlignSetting align;
+  attribute DOMString text;
+  DocumentFragment getCueAsHTML();
+};
+
+enum ScrollSetting { "" /* none */, "up" };
+[Constructor]
+interface VTTRegion {
+  attribute double width;
+  attribute long lines;
+  attribute double regionAnchorX;
+  attribute double regionAnchorY;
+  attribute double viewportAnchorX;
+  attribute double viewportAnchorY;
+  attribute ScrollSetting scroll;
+};

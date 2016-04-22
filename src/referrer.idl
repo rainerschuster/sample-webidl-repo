@@ -1,0 +1,19 @@
+partial interface HTMLAnchorElement {
+  attribute DOMString referrerPolicy;
+};
+
+partial interface HTMLAreaElement {
+  attribute DOMString referrerPolicy;
+};
+
+partial interface HTMLImageElement {
+  attribute DOMString referrerPolicy;
+};
+
+partial interface HTMLIFrameElement {
+  attribute DOMString referrerPolicy;
+};
+
+partial interface HTMLLinkElement {
+  attribute DOMString referrerPolicy;
+};

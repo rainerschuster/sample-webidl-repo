@@ -1,0 +1,42 @@
+interface DeviceOrientationEvent : Event {
+    readonly attribute double? alpha;
+    readonly attribute double? beta;
+    readonly attribute double? gamma;
+    readonly attribute boolean absolute;
+    void initDeviceOrientationEvent(DOMString type,
+                                    boolean bubbles,
+                                    boolean cancelable,
+                                    double? alpha,
+                                    double? beta,
+                                    double? gamma,
+                                    boolean absolute);
+    };
+  
+
+    [Callback, NoInterfaceObject]
+    interface DeviceAcceleration {
+    readonly attribute double? x;
+    readonly attribute double? y;
+    readonly attribute double? z;
+    };
+
+    [Callback, NoInterfaceObject]
+    interface DeviceRotationRate {
+    readonly attribute double? alpha;
+    readonly attribute double? beta;
+    readonly attribute double? gamma;
+    };
+
+    interface DeviceMotionEvent : Event {
+    readonly attribute DeviceAcceleration? acceleration;
+    readonly attribute DeviceAcceleration? accelerationIncludingGravity;
+    readonly attribute DeviceRotationRate? rotationRate;
+    readonly attribute double? interval;
+    void initAccelerometerEvent(DOMString type,
+                                boolean bubbles,
+                                boolean cancelable,
+                                DeviceAcceleration? acceleration,
+                                DeviceAcceleration? accelerationIncludingGravity,
+                                DeviceRotationRate? rotationRate,
+                                double? interval);
+    };
