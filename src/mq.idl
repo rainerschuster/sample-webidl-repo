@@ -1,8 +1,0 @@
-partial interface CSSRule {
-  const unsigned short CUSTOM_MEDIA_RULE = 17;
-};
-
-interface CSSCustomMediaRule : CSSRule {
-  attribute DOMString name;
-  [SameObject, PutForwards=mediaText] readonly attribute MediaList media;
-};

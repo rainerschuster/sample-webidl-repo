@@ -1,21 +1,19 @@
-interface ViewCSS /*: views::AbstractView*/ {
-  CSSStyleDeclaration getComputedStyle(Element elt, DOMString pseudoElt);
-};
-
-interface DocumentCSS /*: stylesheets::DocumentStyle*/ {
-  CSSStyleDeclaration getOverrideStyle(Element elt, DOMString pseudoElt);
-};
-
 typedef Document SVGDocument;
 
 typedef DOMMatrix SVGMatrix;
 
 typedef DOMException DOMError;
 
-interface WindowProxy : Window {
+interface OverconstrainedError {
 };
 
 interface ReadableStream {
+};
+
+interface Transferable {
+};
+
+interface WindowProxy : Window {
 };
 
 //interface Capabilities {

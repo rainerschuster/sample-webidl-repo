@@ -80,17 +80,18 @@ partial interface Document {
 interface CaretPosition {
   readonly attribute Node offsetNode;
   readonly attribute unsigned long offset;
-  DOMRect? getClientRect();
+  [NewObject] DOMRect? getClientRect();
 };
 
-enum ScrollLogicalPosition { "start", "end" };
+enum ScrollLogicalPosition { "start", "center", "end", "nearest" };
 dictionary ScrollIntoViewOptions : ScrollOptions {
-  ScrollLogicalPosition block = "start";
+  ScrollLogicalPosition block = "center";
+  ScrollLogicalPosition inline = "center";
 };
 
 partial interface Element {
-  DOMRectList getClientRects();
-  DOMRect getBoundingClientRect();
+  sequence<DOMRect> getClientRects();
+  [NewObject] DOMRect getBoundingClientRect();
   void scrollIntoView();
   void scrollIntoView((boolean or object) arg);
   void scroll(optional ScrollToOptions options);
@@ -123,8 +124,8 @@ partial interface HTMLImageElement {
 };
 
 partial interface Range {
-  DOMRectList getClientRects();
-  DOMRect getBoundingClientRect();
+  sequence<DOMRect> getClientRects();
+  [NewObject] DOMRect getBoundingClientRect();
 };
 
 partial interface MouseEvent {
@@ -161,14 +162,14 @@ dictionary ConvertCoordinateOptions {
 [NoInterfaceObject]
 interface GeometryUtils {
   sequence<DOMQuad> getBoxQuads(optional BoxQuadOptions options);
-//  DOMQuad convertQuadFromNode(DOMQuadInit quad, GeometryNode from, optional ConvertCoordinateOptions options);
+  DOMQuad convertQuadFromNode(DOMQuadInit quad, GeometryNode from, optional ConvertCoordinateOptions options);
   DOMQuad convertRectFromNode(DOMRectReadOnly rect, GeometryNode from, optional ConvertCoordinateOptions options);
   DOMPoint convertPointFromNode(DOMPointInit point, GeometryNode from, optional ConvertCoordinateOptions options); // XXX z,w turns into 0
 };
 
 Text implements GeometryUtils; // like Range
 Element implements GeometryUtils;
-PseudoElement implements GeometryUtils;
+CSSPseudoElement implements GeometryUtils;
 Document implements GeometryUtils;
 
-typedef (Text or Element or PseudoElement or Document) GeometryNode;
+typedef (Text or Element or CSSPseudoElement or Document) GeometryNode;

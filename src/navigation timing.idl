@@ -21,7 +21,6 @@ interface PerformanceTiming {
   readonly attribute unsigned long long loadEventStart;
   readonly attribute unsigned long long loadEventEnd;
 };
-
 interface PerformanceNavigation {
   const unsigned short TYPE_NAVIGATE = 0;
   const unsigned short TYPE_RELOAD = 1;
@@ -30,7 +29,6 @@ interface PerformanceNavigation {
   readonly attribute unsigned short type;
   readonly attribute unsigned short redirectCount;
 };
-
 interface Performance {
   readonly attribute PerformanceTiming timing;
   readonly attribute PerformanceNavigation navigation;

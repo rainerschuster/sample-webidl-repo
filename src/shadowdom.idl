@@ -1,35 +1,44 @@
+partial interface DocumentOrShadowRoot {
+            Selection? getSelection ();
+            Element? elementFromPoint(double x, double y);
+            sequence<Element> elementsFromPoint(double x, double y);
+            CaretPosition? caretPositionFromPoint(double x, double y);
+            readonly attribute Element? activeElement;
+            readonly attribute StyleSheetList styleSheets;
+          };
 interface ShadowRoot : DocumentFragment {
-Selection? getSelection();
-Element? elementFromPoint(double x, double y);
-sequence<Element> elementsFromPoint(double x, double y);
-CaretPosition? caretPositionFromPoint(double x, double y);
-readonly attribute Element? activeElement;
 readonly attribute Element host;
 [TreatNullAs=EmptyString] attribute DOMString innerHTML;
-readonly attribute StyleSheetList styleSheets;
 };
 partial interface Element {
-ShadowRoot createShadowRoot(ShadowRootInit shadowRootInitDict);
-NodeList getDestinationInsertionPoints();
+ShadowRoot attachShadow(ShadowRootInit shadowRootInitDict);
+readonly attribute HTMLSlotElement? assignedSlot;
+attribute DOMString slot;
 readonly attribute ShadowRoot? shadowRoot;
 };
 dictionary ShadowRootInit {
-ShadowRootMode mode;
+required ShadowRootMode mode;
+boolean delegatesFocus = false;
 };
 enum ShadowRootMode {
 "open", "closed"
 };
 partial interface Text {
-NodeList getDestinationInsertionPoints();
+readonly attribute HTMLSlotElement? assignedSlot;
 };
-interface HTMLContentElement : HTMLElement {
-attribute DOMString select;
-sequence<Node> getDistributedNodes();
+interface HTMLSlotElement : HTMLElement {
+attribute DOMString name;
+sequence<Node> assignedNodes(optional AssignedNodesOptions options);
+};
+dictionary AssignedNodesOptions {
+boolean flatten = false;
 };
 partial dictionary EventInit {
 boolean scoped = false;
+boolean relatedTargetScoped = false;
 };
 partial interface Event {
-readonly attribute object deepPath;
+sequence<EventTarget> deepPath();
 readonly attribute boolean scoped;
+readonly attribute boolean relatedTargetScoped;
 };
