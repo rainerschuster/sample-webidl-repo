@@ -1,0 +1,7 @@
+partial interface Window {
+  readonly attribute boolean isSecureContext;
+};
+
+partial interface WorkerGlobalScope {
+  readonly attribute boolean isSecureContext;
+};

@@ -1,0 +1,56 @@
+partial interface Navigator {
+Promise<Directory?> getFileSystem();
+};
+partial interface URL {
+static DOMString? getFileSystemURL(File file);
+};
+[Exposed=Window,Worker] interface Directory {
+readonly attribute DOMString name;
+Promise<File> createFile(DOMString path, CreateFileOptions options);
+Promise<Directory> createDirectory(DOMString path);
+Promise<(File or Directory)> get(DOMString path);
+CancelablePromise<void> move((DOMString or File or Directory) path, (DOMString or Directory or DestinationDict) dest);
+Promise<boolean> remove((DOMString or File or Directory) path);
+Promise<boolean> removeDeep((DOMString or File or Directory) path);
+Promise<FileHandle> openRead((DOMString or File) path);
+Promise<FileHandleWritable> openWrite((DOMString or File) path, OpenWriteOptions options);
+Promise<FileOrDirectorySequence> getFilesAndDirectories();
+Observable<(File or Directory)> enumerate(optional DOMString path);
+Observable<(File)> enumerateDeep(optional DOMString path);
+};
+interface FileHandle {
+readonly attribute FileOpenMode mode;
+readonly attribute boolean active;
+attribute long long? offset;
+Promise<File> getFile();
+CancelablePromise<ArrayBuffer> read(unsigned long long size);
+};
+interface FileHandleWritable : FileHandle {
+CancelablePromise<void> write((DOMString or ArrayBuffer or ArrayBufferView or Blob) value);
+Promise<void> setSize(optional unsigned long long size);
+};
+dictionary CreateFileOptions {
+CreateIfExistsMode ifExists = "fail";
+(DOMString or Blob or ArrayBuffer or ArrayBufferView) data;
+};
+dictionary OpenWriteOptions {
+OpenIfNotExistsMode ifNotExists = "create";
+OpenIfExistsMode ifExists = "open";
+boolean Flush = false;
+};
+enum CreateIfExistsMode {
+"replace", "fail"
+};
+enum OpenIfExistsMode {
+"open", "fail"
+};
+enum OpenIfNotExistsMode {
+"create", "fail"
+};
+dictionary DestinationDict {
+Directory dir;
+DOMString name;
+};
+enum FileOpenMode {
+"readonly", "readwrite"
+};

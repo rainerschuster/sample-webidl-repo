@@ -1,0 +1,45 @@
+enum StorageType {
+    "temporary",
+    "persistent"
+};
+dictionary StorageInfo {
+             unsigned long long usage;
+             unsigned long long quota;
+};
+[NoInterfaceObject]
+interface StorageQuota {
+    [SameObject]
+    readonly        attribute frozen array supportedTypes;
+    Promise queryInfo (StorageType type);
+    Promise requestPersistentQuota ([Clamp] unsigned long long newQuota);
+};
+partial interface Navigator {
+    readonly        attribute StorageQuota storageQuota;
+};
+[Constructor(DOMString type, optional StorageEventInit eventInitDict)]
+interface StorageEvent : Event {
+    readonly        attribute unsigned long long usage;
+    readonly        attribute unsigned long long quota;
+};
+dictionary StorageEventInit : EventInit {
+             unsigned long long usage = 0;
+             unsigned long long quota = 0;
+};
+[Constructor(StorageType type, optional unsigned long rate)]
+interface StorageWatcher : EventTarget {
+    void close ();
+    readonly        attribute StorageType   type;
+    readonly        attribute unsigned long rate;
+                    attribute EventListener onstoragechange;
+};
+partial interface ServiceWorkerGlobalScope {
+                    attribute EventHandler onbeforeevicted;
+                    attribute EventHandler onevicted;
+};
+[Constructor(DOMString type, optional BeforeEvictEventInit eventInitDict), Exposed=ServiceWorker]
+interface BeforeEvictEvent : ExtendableEvent {
+    readonly        attribute unsigned long long requestedBytes;
+};
+[Constructor(DOMString type, optional EvictedEventInit eventInitDict), Exposed=ServiceWorker]
+interface EvictedEvent : ExtendableEvent {
+};

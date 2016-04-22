@@ -1,0 +1,25 @@
+partial interface Document {
+  Element?  querySelector(DOMString selectors);
+  NodeList  querySelectorAll(DOMString selectors);
+
+  Element?  find(DOMString selectors, optional (Element or sequence<Node>)? refNodes);
+  NodeList  findAll(DOMString selectors, optional (Element or sequence<Node>)? refNodes);
+};
+
+partial interface DocumentFragment {
+  Element?  querySelector(DOMString selectors);
+  NodeList  querySelectorAll(DOMString selectors);
+
+  Element?  find(DOMString selectors, optional (Element or sequence<Node>)? refNodes);
+  NodeList  findAll(DOMString selectors, optional (Element or sequence<Node>)? refNodes);
+};
+
+partial interface Element {
+  Element?  querySelector(DOMString selectors);
+  NodeList  querySelectorAll(DOMString selectors);
+
+  Element?  find(DOMString selectors);
+  NodeList  findAll(DOMString selectors);
+
+  boolean   matches(DOMString selectors, optional (Element or sequence<Node>)? refNodes);
+};

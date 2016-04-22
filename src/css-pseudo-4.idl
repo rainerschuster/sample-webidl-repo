@@ -1,0 +1,19 @@
+interface CSSPseudoElement {
+    readonly attribute DOMString type;
+    readonly attribute CSSStyleDeclaration style;
+};
+
+CSSPseudoElement implements EventTarget;
+
+interface CSSPseudoElementList {
+    readonly attribute unsigned long length;
+    CSSPseudoElement item(unsigned long index);
+    CSSPseudoElement getByType(DOMString type);
+                     // replies null if no pseudo-element exists for
+                     //     the requested type
+};
+
+partial interface Window {
+  CSSPseudoElementList getPseudoElements(Element elt,
+                                       DOMString type);
+};

@@ -1285,7 +1285,7 @@ partial interface Touch {
 };
 interface ImageBitmapRenderingContext {
   readonly attribute HTMLCanvasElement canvas;
-  void transferImageBitmap(ImageBitmap? bitmap);
+  void transferFromImageBitmap(ImageBitmap? bitmap);
 };
 
 dictionary ImageBitmapRenderingContextSettings {
@@ -1773,9 +1773,9 @@ dictionary MessageEventInit : EventInit {
   (WindowProxy or MessagePort)? source = null;
   sequence<MessagePort>? ports = null;
 };
-[Constructor(DOMString url, optional EventSourceInit eventSourceInitDict), Exposed=(Window,Worker)]
+[Constructor(USVString url, optional EventSourceInit eventSourceInitDict), Exposed=(Window,Worker)]
 interface EventSource : EventTarget {
-  readonly attribute DOMString url;
+  readonly attribute USVString url;
   readonly attribute boolean withCredentials;
 
   // ready state
